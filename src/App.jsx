@@ -1,35 +1,74 @@
 import './App.css';
 
-import { useState } from 'react';
-
-import reactLogo from './assets/react.svg';
+import { useFetch } from './hooks/useFetch';
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const { data: accessories } = useFetch('/api/accessories.json');
+  const { data: phones } = useFetch('/api/phones.json');
 
   return (
-    <>
-      <div className="p-4">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={reactLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card shadow-outlineBlueLight">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {phones ? (
+        <div className="flex flex-wrap gap-6 justify-center">
+          {phones.map((phone) => (
+            <div
+              key={phone.id}
+              className="bg-white border border-gray-300 p-4 shadow-md flex flex-col w-[220px] h-[500px]"
+            >
+              <div className="flex-grow">
+                {/* Fixed image size */}
+                <div className="flex justify-center mb-4">
+                  <img
+                    src={`/${phone.images[0]}`}
+                    alt={phone.name}
+                    className="w-[150px] h-[200px] object-contain"
+                  />
+                </div>
+                <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis">
+                  {phone.name}
+                </h3>
+                <p className="mt-2 font-bold text-xl text-black">
+                  $
+                  {phone.priceDiscount
+                    ? phone.priceDiscount
+                    : phone.priceRegular}
+                </p>
+
+                {/* Centered Divider */}
+                <div className="flex items-center my-2">
+                  <div className="flex-grow bg-gray-300 h-[1px]"></div>
+                </div>
+
+                {/* Details Section */}
+                <div className="space-y-1">
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Screen</span>
+                    <span className="text-black">{phone.screen}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">Capacity</span>
+                    <span className="text-black">{phone.capacity}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-500">RAM</span>
+                    <span className="text-black">{phone.ram}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Add to cart button located directly under RAM */}
+              <div className="mt-0">
+                <button className="w-full bg-black text-white px-4 py-2">
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
   );
 }
 
