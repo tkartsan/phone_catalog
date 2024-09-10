@@ -13,10 +13,9 @@ function App() {
           {phones.map((phone) => (
             <div
               key={phone.id}
-              className="bg-white border border-gray-300 p-4 shadow-md flex flex-col w-[220px] h-[500px]"
+              className="bg-white border border-gray-300 p-4 shadow-md flex flex-col w-[300px] "
             >
-              <div className="flex-grow">
-                {/* Fixed image size */}
+              <div>
                 <div className="flex justify-center mb-4">
                   <img
                     src={`/${phone.images[0]}`}
@@ -24,7 +23,7 @@ function App() {
                     className="w-[150px] h-[200px] object-contain"
                   />
                 </div>
-                <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis">
+                <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis min-h-[56px]">
                   {phone.name}
                 </h3>
                 <p className="mt-2 font-bold text-xl text-black">
@@ -34,14 +33,12 @@ function App() {
                     : phone.priceRegular}
                 </p>
 
-                {/* Centered Divider */}
                 <div className="flex items-center my-2">
                   <div className="flex-grow bg-gray-300 h-[1px]"></div>
                 </div>
 
-                {/* Details Section */}
-                <div className="space-y-1">
-                  <div className="flex justify-between">
+                <div className="mb-3">
+                  <div className="flex justify-between ">
                     <span className="text-gray-500">Screen</span>
                     <span className="text-black">{phone.screen}</span>
                   </div>
@@ -55,8 +52,6 @@ function App() {
                   </div>
                 </div>
               </div>
-
-              {/* Add to cart button located directly under RAM */}
               <div className="mt-0">
                 <button className="w-full bg-black text-white px-4 py-2">
                   Add to cart

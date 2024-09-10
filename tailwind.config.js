@@ -41,6 +41,7 @@ export default {
         colorTextBase: '#000',
         colorTextLightSolid: '#FFFFFF',
         colorBgBase: '#FFFFFF',
+        colorBgRed: 'red',
       },
     },
   },
