@@ -74,6 +74,11 @@ module.exports = [
     'simple-import-sort/exports': 'error',
     },
     settings: {
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx'],
+        },
+      },
       react: {
         version: 'detect', // Automatically detects the React version
       },
