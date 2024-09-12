@@ -9,7 +9,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-white text-gray-600 p-6">
+    <footer className="w-full bg-colorBgLightBlue text-gray-600 p-6">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-lg font-bold text-black">
           <span role="img" aria-label="nice gadgets">
