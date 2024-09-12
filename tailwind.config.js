@@ -42,6 +42,8 @@ export default {
         colorTextLightSolid: '#FFFFFF',
         colorBgBase: '#FFFFFF',
         colorBgRed: 'red',
+        colorBgBlue: 'blue',
+        colorBgLightBlue: 'lightblue',
       },
     },
   },
