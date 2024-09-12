@@ -13,6 +13,20 @@ body {
   height: inherit;
 }
 
+button,
+select,
+input {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 p {
   margin: 8px 0;
 }

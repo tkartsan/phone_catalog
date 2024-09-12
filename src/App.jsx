@@ -3,21 +3,18 @@ import './App.css';
 import { useFetch } from './hooks/useFetch';
 import { Footer } from './Footer';
 import { Header } from './Header';
-import { PhoneCard } from './PhoneCard';
+import { PhoneSlider } from './PhoneSlider';
 
 function App() {
-  const { data: phones } = useFetch('/api/phones.json');
+  const { data: phonesJson } = useFetch('/api/phones.json');
+  // const { data: productsJson } = useFetch('/api/products.json');
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="pt-20">
-        {phones ? (
-          <div className="flex flex-wrap gap-6 justify-center">
-            {phones.map((phone) => (
-              <PhoneCard key={phone.id} phone={phone} />
-            ))}
-          </div>
+      <main className="pt-[82px]">
+        {phonesJson ? (
+          <PhoneSlider phones={phonesJson.slice(0, 10)} />
         ) : (
           <p>Loading...</p>
         )}

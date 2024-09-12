@@ -2,7 +2,7 @@ import React from 'react';
 
 export const PhoneCard = ({ phone }) => {
   return (
-    <div className="bg-white border border-gray-300 p-4 shadow-md flex flex-col w-[300px]">
+    <div className="bg-white border border-gray-300 p-4 shadow-md flex flex-col max-w-[272px]">
       <div>
         <div className="flex justify-center mb-4">
           <img
