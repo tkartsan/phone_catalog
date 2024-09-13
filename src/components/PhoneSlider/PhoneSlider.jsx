@@ -1,4 +1,4 @@
-import './../swiper-bundle.min.css';
+import './../../../swiper-bundle.min.css';
 import './PhoneSlider.css';
 
 import React from 'react';
@@ -7,8 +7,8 @@ import { Navigation } from 'swiper/modules';
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { ArrowLeftIcon, ArrowRightIcon } from './assets';
-import { PhoneCard } from './PhoneCard';
+import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
+import { PhoneCard } from '../PhoneCard';
 
 export const PhoneSlider = ({ phones }) => {
   return (

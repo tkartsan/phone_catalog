@@ -1,9 +1,9 @@
 import './App.css';
 
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { PhoneSlider } from './components/PhoneSlider';
 import { useFetch } from './hooks/useFetch';
-import { Footer } from './Footer';
-import { Header } from './Header';
-import { PhoneSlider } from './PhoneSlider';
 
 function App() {
   const { data: phonesJson } = useFetch('/api/phones.json');
