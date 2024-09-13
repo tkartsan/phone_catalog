@@ -13,13 +13,18 @@ import { PhoneCard } from '../PhoneCard';
 export const PhoneSlider = ({ phones }) => {
   return (
     <div className="mx-auto max-w-[1136px]">
-      <div className="navigation-wrapper">
-        <button className="swiper-prev">
-          <ArrowLeftIcon />
-        </button>
-        <button className="swiper-next">
-          <ArrowRightIcon />
-        </button>
+      <div className="flex justify-between">
+        <div className="font-extrabold text-2xl leading-10">
+          Brand new models
+        </div>
+        <div className="navigation-wrapper">
+          <button className="swiper-prev">
+            <ArrowLeftIcon />
+          </button>
+          <button className="swiper-next">
+            <ArrowRightIcon />
+          </button>
+        </div>
       </div>
       <Swiper
         spaceBetween={15}
