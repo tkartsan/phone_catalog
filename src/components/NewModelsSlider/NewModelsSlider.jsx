@@ -1,4 +1,4 @@
-import './PhoneSlider.css';
+import './NewModelsSlider.css';
 
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
-export const PhoneSlider = ({ phones }) => {
+export const NewModelsSlider = ({ phones }) => {
   return (
     <div className="mx-auto max-w-[1136px]">
       <div className="flex justify-between">

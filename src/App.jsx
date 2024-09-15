@@ -3,12 +3,13 @@ import './App.css';
 import { CoverSlider } from './components/CoverSlider';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { PhoneSlider } from './components/PhoneSlider';
+import { NewModelsSlider } from './components/NewModelsSlider';
 import { useFetch } from './hooks/useFetch';
+import { getMostRecentPhones } from './utils/getMostRecentPhones';
 
 function App() {
   const { data: phonesJson } = useFetch('/api/phones.json');
-  // const { data: productsJson } = useFetch('/api/products.json');
+  const { data: productsJson } = useFetch('/api/products.json');
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -16,7 +17,9 @@ function App() {
       <main className="pt-[82px]">
         <CoverSlider />
         {phonesJson ? (
-          <PhoneSlider phones={phonesJson.slice(0, 10)} />
+          <NewModelsSlider
+            phones={getMostRecentPhones(phonesJson, productsJson)}
+          />
         ) : (
           <p>Loading...</p>
         )}
