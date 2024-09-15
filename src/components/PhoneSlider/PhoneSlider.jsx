@@ -1,4 +1,3 @@
-import './../../../swiper-bundle.min.css';
 import './PhoneSlider.css';
 
 import React from 'react';
