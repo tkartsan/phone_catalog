@@ -10,6 +10,8 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
 export const NewModelsSlider = ({ phones }) => {
+  console.log(phones);
+
   return (
     <div className="mx-auto max-w-[1136px]">
       <div className="flex justify-between">
@@ -35,7 +37,7 @@ export const NewModelsSlider = ({ phones }) => {
         }}
       >
         {phones.map((phone) => (
-          <SwiperSlide key={phone.itemId}>
+          <SwiperSlide key={phone.id}>
             <PhoneCard phone={phone} />
           </SwiperSlide>
         ))}
