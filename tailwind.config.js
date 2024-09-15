@@ -39,11 +39,11 @@ export default {
       },
       colors: {
         colorTextBase: '#000',
-        colorTextLightSolid: '#FFFFFF',
         colorBgBase: '#FFFFFF',
         colorBgRed: 'red',
         colorBgBlue: 'blue',
         colorBgLightBlue: 'lightblue',
+        colorBgGrey: '#4c564c',
       },
     },
   },
