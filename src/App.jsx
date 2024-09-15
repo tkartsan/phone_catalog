@@ -16,7 +16,7 @@ function App() {
       <Header />
       <main className="pt-[82px]">
         <CoverSlider />
-        {phonesJson ? (
+        {phonesJson && productsJson ? (
           <NewModelsSlider
             phones={getMostRecentPhones(phonesJson, productsJson)}
           />

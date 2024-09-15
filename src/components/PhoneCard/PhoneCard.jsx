@@ -25,7 +25,7 @@ export const PhoneCard = ({ phone }) => {
         <div className="mb-3">
           <div className="flex justify-between">
             <span className="text-gray-500">Screen</span>
-            <span className="text-black">{phone.screen}</span>
+            <span className="text-black text-right">{phone.screen}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">Capacity</span>
