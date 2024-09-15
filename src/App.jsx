@@ -1,5 +1,6 @@
 import './App.css';
 
+import { CoverSlider } from './components/CoverSlider';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { PhoneSlider } from './components/PhoneSlider';
@@ -13,6 +14,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="pt-[82px]">
+        <CoverSlider />
         {phonesJson ? (
           <PhoneSlider phones={phonesJson.slice(0, 10)} />
         ) : (
