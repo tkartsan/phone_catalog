@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Header = () => {
   return (
-    <header className="w-full bg-gray-800 text-white p-4 fixed top-0">
+    <header className="w-full bg-gray-800 text-white p-4 fixed top-0 z-10">
       <div className="flex justify-between items-center container mx-auto">
         <div className="text-lg font-bold">NICE GADGETS</div>
         <nav>
