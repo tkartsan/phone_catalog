@@ -1,3 +1,5 @@
+@import url('../swiper-bundle.min.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,10 @@ body {
   padding: 0;
   font-family: 'SF Pro Display', sans-serif;
   height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #root {
