@@ -10,8 +10,6 @@ import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
 export const NewModelsSlider = ({ phones }) => {
-  console.log(phones);
-
   return (
     <div className="mx-auto max-w-[1136px]">
       <div className="flex justify-between">

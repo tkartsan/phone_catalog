@@ -1,6 +1,7 @@
 .navigation-wrapper {
   display: flex;
   gap: 20px;
+
   .swiper-prev,
   .swiper-next {
     display: flex;
