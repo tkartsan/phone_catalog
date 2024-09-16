@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex flex-col gap-4 pt-[100px]">
+      <main className="flex flex-col gap-8 pt-[100px]">
         <CoverSlider />
         {phonesJson && productsJson ? (
           <NewModelsSlider
