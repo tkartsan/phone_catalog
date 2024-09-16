@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PhoneCard = ({ phone }) => {
+export const PhoneCard = ({ phone, isShowDiscount }) => {
   return (
     <div className="bg-white border-solid border-colorLightGrey p-4 flex flex-col max-w-[272px]">
       <div>
@@ -14,10 +14,14 @@ export const PhoneCard = ({ phone }) => {
         <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis min-h-[56px]">
           {phone.name}
         </h3>
-        <p className="mt-2 font-bold text-xl text-black">
-          ${phone.priceDiscount ? phone.priceDiscount : phone.priceRegular}
-        </p>
-
+        <div className="mt-2 flex items-center gap-2">
+          <p className="font-bold text-xl text-black">
+            ${isShowDiscount ? phone.priceDiscount : phone.priceRegular}
+          </p>
+          {isShowDiscount && (
+            <p className="text-gray-500 line-through">${phone.priceRegular}</p>
+          )}
+        </div>
         <div className="flex items-center my-2">
           <div className="flex-grow bg-gray-300 h-[1px]"></div>
         </div>
