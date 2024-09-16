@@ -47,6 +47,7 @@ export default {
         colorPurple: '#A020F0',
         colorGrey: '#808080',
         colorDarkGrey: '#2b2b2b',
+        colorLightGrey: '#dedede',
       },
     },
   },
