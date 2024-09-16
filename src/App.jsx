@@ -1,5 +1,6 @@
 import './App.css';
 
+import { CategoriesPick } from './components/CategoriesPick';
 import { CoverSlider } from './components/CoverSlider';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -9,6 +10,8 @@ import { getMostRecentPhones } from './utils/getMostRecentPhones';
 
 function App() {
   const { data: phonesJson } = useFetch('/api/phones.json');
+  const { data: tabletsJson } = useFetch('/api/tablets.json');
+  const { data: accessoriesJson } = useFetch('/api/accessories.json');
   const { data: productsJson } = useFetch('/api/products.json');
 
   return (
@@ -23,6 +26,11 @@ function App() {
         ) : (
           <p>Loading...</p>
         )}
+        <CategoriesPick
+          phones={phonesJson}
+          tablets={tabletsJson}
+          accessories={accessoriesJson}
+        />
       </main>
       <Footer />
     </div>
