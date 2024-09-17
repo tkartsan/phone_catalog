@@ -3,9 +3,8 @@ import './MobilePhones.css';
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
+import { Breadcrumb } from '../Breadcrumb';
 import { PhoneCard } from '../PhoneCard';
-
-import homeIcon from './../../assets/home.svg';
 
 export const MobilePhones = ({ phones }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -28,15 +27,14 @@ export const MobilePhones = ({ phones }) => {
 
   return (
     <div className="container">
+      <Breadcrumb currentName="Phones" />
       <div className="title">Mobile Phones</div>
       <p className="subtitle">{phoneCount} models</p>
-
       <div className="phone-grid">
         {currentPhones.map((phone) => (
           <PhoneCard key={phone.id} phone={phone} isShowDiscount={true} />
         ))}
       </div>
-
       <div className="pagination-container">
         <ReactPaginate
           previousLabel="<"
