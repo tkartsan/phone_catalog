@@ -16,7 +16,7 @@ export const CategoriesPick = ({ phones, tablets, accessories }) => {
           image: phonecover,
           models: `${phones.length} models`,
           bgColor: '#6D6474',
-          link: '/mobile-phones', // URL path for redirection
+          link: '/phones', // URL path for redirection
         },
         {
           title: 'Tablets',
