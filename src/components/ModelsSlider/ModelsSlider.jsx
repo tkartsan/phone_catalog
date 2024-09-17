@@ -1,4 +1,4 @@
-import './DiscountModelsSlider.css';
+import './ModelsSlider.css';
 
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
@@ -9,11 +9,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
-export const DiscountModelsSlider = ({ phones }) => {
+export const ModelsSlider = ({ phones, title, isShowDiscount }) => {
   return (
     <div className="mx-auto max-w-[1136px]">
       <div className="flex justify-between">
-        <div className="font-extrabold text-2xl leading-10">Hot prices</div>
+        <div className="font-extrabold text-2xl leading-10">{title}</div>
         <div className="navigation-wrapper">
           <button className="swiper-prev">
             <ArrowLeftIcon />
@@ -34,7 +34,7 @@ export const DiscountModelsSlider = ({ phones }) => {
       >
         {phones.map((phone) => (
           <SwiperSlide key={phone.id}>
-            <PhoneCard phone={phone} isShowDiscount={true} />
+            <PhoneCard phone={phone} isShowDiscount={isShowDiscount} />
           </SwiperSlide>
         ))}
       </Swiper>
