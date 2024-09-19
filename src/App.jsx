@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
 import { MobilePhones } from './components/MobilePhones';
+import { PhoneDetails } from './components/PhoneDetails';
 import { useFetch } from './hooks/useFetch';
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
           <Route
             path="/phones"
             element={<MobilePhones phones={phonesData} />}
+          />
+          <Route
+            path="/phones/:phoneId"
+            element={<PhoneDetails phones={phonesData} />}
           />
         </Routes>
       </main>
