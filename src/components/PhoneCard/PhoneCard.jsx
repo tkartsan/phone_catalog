@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useFetch } from '../../hooks/useFetch';
-import { ModelsSlider } from '../ModelsSlider';
-
 export const PhoneCard = ({ phone, isShowDiscount }) => {
   return (
     <Link to={`/phones/${phone.id}`} className="no-underline">

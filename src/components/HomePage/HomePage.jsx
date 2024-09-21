@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { CategoriesPick } from '../CategoriesPick';
 import { CoverSlider } from '../CoverSlider';
 import { ModelsSlider } from '../ModelsSlider';
