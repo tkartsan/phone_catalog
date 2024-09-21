@@ -9,6 +9,7 @@ import { HomePage } from './components/HomePage';
 import { MobilePhones } from './components/MobilePhones';
 import { PhoneDetails } from './components/PhoneDetails';
 import { useFetch } from './hooks/useFetch';
+import { getPhonesWithNumericId } from './utils/getPhonesWithNumericId';
 
 function App() {
   const { data: phonesData } = useFetch('/api/phones.json');
@@ -38,7 +39,11 @@ function App() {
           />
           <Route
             path="/phones/:phoneId"
-            element={<PhoneDetails phones={phonesData} />}
+            element={
+              <PhoneDetails
+                phones={getPhonesWithNumericId(phonesData, productsData)}
+              />
+            }
           />
         </Routes>
       </main>
