@@ -9,4 +9,5 @@ export const phoneColorNamesMap = {
   gold: '#FFD700',
   silver: '#C0C0C0',
   midnightgreen: '#4E5A49',
+  purple: '	#A020F0',
 };
