@@ -20,6 +20,8 @@ export const HomePage = ({
         <ModelsSlider
           phones={getMostRecentPhones(phonesData, productsData)}
           title="Brand new models"
+          isShowDiscount={false}
+          sliderId="brand-new-models"
         />
       ) : (
         <p>Loading...</p>
@@ -34,6 +36,7 @@ export const HomePage = ({
           phones={getTopDiscountedPhones(phonesData)}
           title="Hot prices"
           isShowDiscount={true}
+          sliderId="hot-prices"
         />
       ) : (
         <p>Loading...</p>

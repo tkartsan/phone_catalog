@@ -9,16 +9,19 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
-export const ModelsSlider = ({ phones, title, isShowDiscount }) => {
+export const ModelsSlider = ({ phones, title, isShowDiscount, sliderId }) => {
+  const prevButtonClass = `swiper-prev-${sliderId}`;
+  const nextButtonClass = `swiper-next-${sliderId}`;
+
   return (
     <div className="mx-auto max-w-[1136px]">
       <div className="flex justify-between">
         <div className="font-extrabold text-2xl leading-10">{title}</div>
         <div className="navigation-wrapper">
-          <button className="swiper-prev">
+          <button className={prevButtonClass}>
             <ArrowLeftIcon />
           </button>
-          <button className="swiper-next">
+          <button className={nextButtonClass}>
             <ArrowRightIcon />
           </button>
         </div>
@@ -28,8 +31,8 @@ export const ModelsSlider = ({ phones, title, isShowDiscount }) => {
         slidesPerView={4}
         modules={[Navigation]}
         navigation={{
-          nextEl: '.swiper-next',
-          prevEl: '.swiper-prev',
+          nextEl: `.${nextButtonClass}`,
+          prevEl: `.${prevButtonClass}`,
         }}
       >
         {phones.map((phone) => (
