@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
@@ -21,13 +21,20 @@ export const PhoneDetails = ({ phones }) => {
     return <p>Phone not found</p>;
   }
 
+  const [selectedColor, setSelectedColor] = useState(phone.color);
+  const [selectedCapacity, setSelectedCapacity] = useState(phone.capacity);
+
   const handleBackClick = () => {
-    navigate(-1); // Navigate back one step in history
+    navigate(-1);
   };
 
   const handleColorChange = (color) => {
+    setSelectedColor(color);
     const newPhoneId = phones.find(
-      (p) => p.namespaceId === phone.namespaceId && p.color === color,
+      (p) =>
+        p.namespaceId === phone.namespaceId &&
+        p.color === color &&
+        p.capacity === selectedCapacity,
     )?.id;
 
     if (newPhoneId) {
@@ -35,10 +42,13 @@ export const PhoneDetails = ({ phones }) => {
     }
   };
 
-  // Function to handle capacity change
   const handleCapacityChange = (capacity) => {
+    setSelectedCapacity(capacity);
     const newPhoneId = phones.find(
-      (p) => p.namespaceId === phone.namespaceId && p.capacity === capacity,
+      (p) =>
+        p.namespaceId === phone.namespaceId &&
+        p.color === selectedColor &&
+        p.capacity === capacity,
     )?.id;
 
     if (newPhoneId) {
@@ -49,12 +59,10 @@ export const PhoneDetails = ({ phones }) => {
   const renderRightPanel = () => {
     return (
       <div className="flex flex-col w-[400px] space-y-4">
-        {/* ID on the top */}
         <p className="text-right text-sm text-gray-500">
           ID: {phone.numericId}
         </p>
 
-        {/* Colors */}
         <div className="space-y-2">
           <p className="text-lg">Available colors</p>
           <div className="flex space-x-4">
@@ -62,18 +70,16 @@ export const PhoneDetails = ({ phones }) => {
               <button
                 key={index}
                 className={`w-8 h-8 rounded-full border-2 border-solid ${
-                  phone.color === color ? 'border-black' : 'border-gray-300'
+                  selectedColor === color ? 'border-black' : 'border-gray-300'
                 }`}
                 style={{
                   backgroundColor: phoneColorNamesMap[color] || '#000000',
-                }} // Map color names to hex codes
+                }}
                 onClick={() => handleColorChange(color)}
               ></button>
             ))}
           </div>
         </div>
-
-        {/* Capacity */}
         <div className="space-y-2">
           <p className="text-lg">Select capacity</p>
           <div className="flex space-x-4">
@@ -81,9 +87,9 @@ export const PhoneDetails = ({ phones }) => {
               <button
                 key={index}
                 className={`px-4 py-2 border border-solid text-sm ${
-                  phone.capacity === capacity
-                    ? 'border-colorBgBase bg-colorTextBase text-colorBgBase'
-                    : 'border-gray-300'
+                  selectedCapacity === capacity
+                    ? 'border-black bg-black text-white'
+                    : 'border-gray-300 text-black'
                 }`}
                 onClick={() => handleCapacityChange(capacity)}
               >
@@ -92,8 +98,6 @@ export const PhoneDetails = ({ phones }) => {
             ))}
           </div>
         </div>
-
-        {/* Price */}
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-4">
             <p className="text-3xl font-bold">${phone.priceDiscount}</p>
@@ -102,13 +106,9 @@ export const PhoneDetails = ({ phones }) => {
             </p>
           </div>
         </div>
-
-        {/* Add to cart */}
         <button className="px-4 py-3 bg-black text-white text-center">
           Add to cart
         </button>
-
-        {/* Tech specs */}
         <div className="flex flex-col space-y-2 mt-4">
           <div className="flex justify-between">
             <span className="text-gray-600">Screen</span>
@@ -192,10 +192,7 @@ export const PhoneDetails = ({ phones }) => {
             <span className="text-lg">Back</span>
           </div>
         </div>
-
         <h1 className="text-3xl font-bold mb-6">{phone.name}</h1>
-
-        {/* Flex container for image and right panel */}
         <div className="flex justify-between">
           <div className="flex justify-start">
             <img
@@ -204,18 +201,12 @@ export const PhoneDetails = ({ phones }) => {
               className="h-[464px] object-contain"
             />
           </div>
-
-          {/* Right - Phone details */}
           {renderRightPanel()}
         </div>
-
-        {/* About and Tech Specs */}
         <div className="flex gap-10 mt-6">
           {renderDescription()}
           {renderTechSpecs()}
         </div>
-
-        {/* Models slider */}
         {!!phones.length ? (
           <div className="mt-8">
             <ModelsSlider
