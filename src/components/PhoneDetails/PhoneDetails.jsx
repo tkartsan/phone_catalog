@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
-import { phoneColorNamesMap } from '../../global/constants';
 import { ModelsSlider } from '../ModelsSlider';
 
 import { Breadcrumb } from './../Breadcrumb';
@@ -15,6 +14,13 @@ export const PhoneDetails = ({ phones }) => {
   const phone = phones?.find((p) => p.id === phoneId) || {};
   const [selectedColor, setSelectedColor] = useState(phone?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(phone?.capacity);
+
+  useEffect(() => {
+    if (phone) {
+      setSelectedColor(phone.color);
+      setSelectedCapacity(phone.capacity);
+    }
+  }, [phone]);
 
   if (!phones.length) {
     return null;
