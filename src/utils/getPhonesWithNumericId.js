@@ -1,6 +1,6 @@
 export const getPhonesWithNumericId = (phones = [], products = []) => {
   if (!phones || !products) {
-    return {};
+    return [];
   }
 
   const productIdMap = products.reduce((map, product) => {
