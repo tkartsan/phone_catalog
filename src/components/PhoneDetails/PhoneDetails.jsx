@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
 import { phoneColorNamesMap } from '../../global/constants';
-import { useFetch } from '../../hooks/useFetch';
 import { ModelsSlider } from '../ModelsSlider';
 
 import { Breadcrumb } from './../Breadcrumb';
@@ -11,10 +10,12 @@ import { Breadcrumb } from './../Breadcrumb';
 export const PhoneDetails = ({ phones }) => {
   const navigate = useNavigate();
   const { phoneId } = useParams();
-  const phone = phones?.find((p) => p.id === phoneId);
 
-  console.log(phone);
-  const { data: phonesData } = useFetch('/api/phones.json');
+  if (!phones.length) {
+    return null;
+  }
+
+  const phone = phones?.find((p) => p.id === phoneId);
 
   if (!phone) {
     return <p>Phone not found</p>;
@@ -215,10 +216,10 @@ export const PhoneDetails = ({ phones }) => {
         </div>
 
         {/* Models slider */}
-        {phonesData && phonesData.length > 0 ? (
+        {!!phones.length ? (
           <div className="mt-8">
             <ModelsSlider
-              phones={phonesData}
+              phones={phones}
               title="You may also like"
               isShowDiscount={true}
             />
