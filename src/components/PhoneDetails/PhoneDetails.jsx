@@ -120,7 +120,7 @@ export const PhoneDetails = ({ phones }) => {
         {!!phones.length ? (
           <div className="mt-8">
             <ModelsSlider
-              phones={phones}
+              phones={phones.slice(0, 10)}
               title="You may also like"
               isShowDiscount={true}
             />

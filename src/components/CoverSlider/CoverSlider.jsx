@@ -10,9 +10,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 
-import firstimg from './../../assets/1.png';
-import secondimg from './../../assets/2-second-part.png';
-import thirdimg from './../../assets/3.png';
+// import firstimg from './../../assets/images/';
+// import secondimg from './../../assets/2-second-part.png';
+// import thirdimg from './../../assets/3.png';
 
 export const CoverSlider = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export const CoverSlider = () => {
         >
           <SwiperSlide>
             <img
-              src={firstimg}
+              src={'/public/img/1.png'}
               alt="Slide 1"
               className="w-[1040px] h-[400px] object-cover"
             />
@@ -68,7 +68,7 @@ export const CoverSlider = () => {
                 </div>
               </div>
               <img
-                src={secondimg}
+                src={'/public/img/2-second-part.png'}
                 alt="Slide 2"
                 className="w-[500px] h-[400px] object-cover"
               />
@@ -76,7 +76,7 @@ export const CoverSlider = () => {
           </SwiperSlide>
           <SwiperSlide>
             <img
-              src={thirdimg}
+              src={'/public/img/3.png'}
               alt="Slide 3"
               className="w-[1040px] h-[400px] object-cover"
             />
