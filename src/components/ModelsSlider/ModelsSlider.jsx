@@ -9,7 +9,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { PhoneCard } from '../PhoneCard';
 
-export const ModelsSlider = ({ phones, title, isShowDiscount, sliderId }) => {
+export const ModelsSlider = ({
+  phones,
+  title,
+  isShowDiscount,
+  sliderId = '',
+}) => {
   const prevButtonClass = `swiper-prev-${sliderId}`;
   const nextButtonClass = `swiper-next-${sliderId}`;
 
