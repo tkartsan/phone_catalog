@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { WebsiteLogo } from '../../assets';
+
 export const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -9,30 +11,58 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-colorBgLightBlue text-gray-600 p-6 mt-auto">
+    <footer className="w-full bg-colorDarkerWhite text-gray-600 p-6 mt-auto">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-lg font-bold text-black">
-          <span role="img" aria-label="nice gadgets">
-            👍
-          </span>{' '}
-          NICE GADGETS
+        <div className="flex items-center">
+          <WebsiteLogo />
         </div>
         <nav className="flex space-x-8">
-          <a href="/github" className="hover:text-black">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-black no-underline"
+          >
             GITHUB
           </a>
-          <a href="/contacts" className="hover:text-black">
+          <a
+            href="https://www.example.com/contacts"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-black no-underline"
+          >
             CONTACTS
           </a>
-          <a href="/rights" className="hover:text-black">
+          <a
+            href="https://www.example.com/rights"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-black no-underline"
+          >
             RIGHTS
           </a>
         </nav>
         <button
-          className="flex items-center justify-center border border-gray-400 p-2 hover:bg-gray-200"
+          className="flex items-center space-x-2 text-gray-600"
           onClick={scrollToTop}
         >
-          Back to top <span className="ml-1">⬆️</span>
+          <span className="text-gray-500 font-medium">Back to top</span>
+          <div className="w-8 h-8 flex items-center justify-center border border-gray-400 rounded p-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-4 h-4 text-gray-600"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 15l7-7 7 7"
+              />
+            </svg>
+          </div>
         </button>
       </div>
     </footer>
