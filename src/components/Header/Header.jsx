@@ -1,3 +1,5 @@
+import './Header.css';
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -13,21 +15,21 @@ export const Header = () => {
 
   const linkClass = (isActive) =>
     isActive
-      ? 'text-xs font-extrabold uppercase text-colorBlack'
-      : 'text-xs font-extrabold uppercase hover:text-colorGrey';
+      ? 'text-xs font-extrabold uppercase text-colorBlack border-0 border-b-[10px] border-colorBlack h-full flex items-center justify-center navActive'
+      : 'text-xs font-extrabold uppercase text-colorGrey hover:text-colorGrey h-full flex items-center justify-center';
 
   return (
-    <header className="w-full bg-colorDarkerWhite h-[86px] text-colorTextBase fixed top-0 z-10">
-      <div className="flex justify-between items-center container mx-auto">
+    <header className="w-full bg-colorBgBase h-[86px] text-colorTextBase fixed top-0 z-10">
+      <div className="flex justify-between items-center container mx-auto h-full">
         <div className="flex items-center">
           <WebsiteLogo />
         </div>
 
         {/* Navigation links in the center */}
-        <nav>
-          <ul className="flex space-x-12 text-colorBlack font-medium list-none">
+        <nav className="h-full">
+          <ul className="flex space-x-12 font-medium list-none h-full m-0">
             {navLinks.map((link) => (
-              <li key={link.to}>
+              <li key={link.to} className="h-full">
                 <NavLink
                   to={link.to}
                   className={({ isActive }) => linkClass(isActive)}
