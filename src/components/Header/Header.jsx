@@ -4,6 +4,18 @@ import { NavLink } from 'react-router-dom';
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
 
 export const Header = () => {
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/phones', label: 'Phones' },
+    { to: '/tablets', label: 'Tablets' },
+    { to: '/accessories', label: 'Accessories' },
+  ];
+
+  const linkClass = (isActive) =>
+    isActive
+      ? 'text-xs font-extrabold uppercase text-colorBlack'
+      : 'text-xs font-extrabold uppercase hover:text-colorGrey';
+
   return (
     <header className="w-full bg-colorDarkerWhite h-[86px] text-colorTextBase fixed top-0 z-10">
       <div className="flex justify-between items-center container mx-auto">
@@ -14,54 +26,16 @@ export const Header = () => {
         {/* Navigation links in the center */}
         <nav>
           <ul className="flex space-x-12 text-colorBlack font-medium list-none">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'border-b-[5px] border-colorBlack text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack'
-                    : 'border-b-2 border-colorBlack no-underline text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack hover:text-colorGrey'
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/phones"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'border-b-[5px] border-colorBlack text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack'
-                    : 'border-b-2 border-colorBlack no-underline text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack hover:text-colorGrey'
-                }
-              >
-                Phones
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/tablets"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'border-b-[5px] border-colorBlack text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack'
-                    : 'border-b-2 border-colorBlack no-underline text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack hover:text-colorGrey'
-                }
-              >
-                Tablets
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/accessories"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'border-b-[5px] border-colorBlack text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack'
-                    : 'border-b-2 border-colorBlack no-underline text-xs font-extrabold text-left tracking-[0.04em] uppercase leading-[11px] text-colorBlack hover:text-colorGrey'
-                }
-              >
-                Accessories
-              </NavLink>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <NavLink
+                  to={link.to}
+                  className={({ isActive }) => linkClass(isActive)}
+                >
+                  {link.label}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </nav>
 
