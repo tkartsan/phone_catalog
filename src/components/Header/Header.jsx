@@ -66,7 +66,7 @@ export const Header = () => {
         </nav>
 
         {/* Wishlist and Cart icons on the right */}
-        <div className="flex items-center space-x-6" w->
+        <div className="flex items-center space-x-6">
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
           <button
             aria-label="Wishlist"
