@@ -14,11 +14,13 @@ export const PhoneDetails = ({ phones }) => {
   const phone = phones?.find((p) => p.id === phoneId) || {};
   const [selectedColor, setSelectedColor] = useState(phone?.color);
   const [selectedCapacity, setSelectedCapacity] = useState(phone?.capacity);
+  const [selectedImage, setSelectedImage] = useState(phone?.images[0]);
 
   useEffect(() => {
     if (phone) {
       setSelectedColor(phone.color);
       setSelectedCapacity(phone.capacity);
+      setSelectedImage(phone.images[0]);
     }
   }, [phone]);
 
@@ -62,6 +64,10 @@ export const PhoneDetails = ({ phones }) => {
     }
   };
 
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
   const renderDescription = () => {
     return (
       <div className="w-[559px]">
@@ -98,9 +104,28 @@ export const PhoneDetails = ({ phones }) => {
         </div>
         <h1 className="text-3xl font-bold mb-6">{phone.name}</h1>
         <div className="flex justify-between">
-          <div className="flex justify-start">
+          <div className="flex flex-col justify-start items-start gap-4">
+            {phone.images.map((image, index) => (
+              <div
+                key={index}
+                className={`w-[78px] h-[78px] cursor-pointer border-solid ${
+                  selectedImage === image
+                    ? 'border-colorGrey'
+                    : 'border-colorLightGrey'
+                }`}
+                onClick={() => handleImageClick(image)}
+              >
+                <img
+                  src={`/${image}`}
+                  alt={phone.name}
+                  className="object-contain w-full h-full"
+                />
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center">
             <img
-              src={`/${phone.images[0]}`}
+              src={`/${selectedImage}`}
               alt={phone.name}
               className="h-[464px] object-contain"
             />
