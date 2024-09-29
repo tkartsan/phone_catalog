@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { CartPage } from './components/Cart/CartPage';
 import { FavoritePhones } from './components/FavoritePhones';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -47,6 +48,7 @@ function App() {
             }
           />
           <Route path="/favorites" element={<FavoritePhones />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
       <Footer />

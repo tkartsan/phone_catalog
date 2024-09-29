@@ -49,12 +49,16 @@ export const Header = () => {
           <button
             aria-label="Wishlist"
             className="hover:text-colorGrey w-[40px]"
-            onClick={() => navigate('/favorites')} // Navigates to /favorites
+            onClick={() => navigate('/favorites')}
           >
             <HeartIcon className="h-6 w-6" />
           </button>
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
-          <button aria-label="Cart" className="hover:text-colorGrey w-[40px]">
+          <button
+            aria-label="Cart"
+            className="hover:text-colorGrey w-[40px]"
+            onClick={() => navigate('/cart')}
+          >
             <HomeIcon className="h-6 w-6" />
           </button>
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>

@@ -1,17 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { HeartIcon, RedHeartIcon } from '../../assets'; // Assuming you have both icons available
+import { HeartIcon, RedHeartIcon } from '../../assets';
 import { usePhoneStore } from '../../store';
 
 export const PhoneCard = ({ phone, isShowDiscount }) => {
-  const { addFavorite, removeFavorite, isFavorite } = usePhoneStore();
+  const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
+    usePhoneStore();
 
   const handleToggleFavorite = () => {
     if (isFavorite(phone.id)) {
       removeFavorite(phone.id);
     } else {
       addFavorite(phone);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (!isInCart(phone.id)) {
+      addToCart(phone);
     }
   };
 
@@ -63,10 +70,10 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
             className="w-full bg-black text-white px-4 py-2"
             onClick={(e) => {
               e.preventDefault(); // Prevents Link navigation when the button is clicked
-              // Add to cart logic here
+              handleAddToCart(); // Add to cart logic
             }}
           >
-            Add to cart
+            {isInCart(phone.id) ? 'In Cart' : 'Add to cart'}
           </button>
           <button
             className="w-10 h-10 flex justify-center items-center"

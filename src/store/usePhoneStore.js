@@ -4,20 +4,31 @@ import { persist } from 'zustand/middleware';
 export const usePhoneStore = create(
   persist(
     (set, get) => ({
-      favorites: [],
-      addFavorite: (phone) =>
+      cart: [],
+      addToCart: (phone) =>
+        set((state) => {
+          const cart = state.cart;
+          const existsInCart = cart.some((item) => item.id === phone.id);
+
+          if (!existsInCart) {
+            return { cart: [...state.cart, { ...phone, quantity: 1 }] }; // Start with quantity 1
+          }
+
+          return state; // Return the current state if the phone is already in the cart
+        }),
+      updateCartQuantity: (phoneId, quantity) =>
         set((state) => ({
-          favorites: [...state.favorites, phone],
+          cart: state.cart.map((phone) =>
+            phone.id === phoneId ? { ...phone, quantity } : phone,
+          ),
         })),
-      removeFavorite: (phoneId) =>
+      removeFromCart: (phoneId) =>
         set((state) => ({
-          favorites: state.favorites.filter((phone) => phone.id !== phoneId),
+          cart: state.cart.filter((phone) => phone.id !== phoneId),
         })),
-      isFavorite: (phoneId) =>
-        get().favorites.some((phone) => phone.id === phoneId),
     }),
     {
-      name: 'favorite-phones', // Key for localStorage
+      name: 'phone-store', // Local storage key for the store
     },
   ),
 );
