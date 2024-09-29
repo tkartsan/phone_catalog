@@ -11,7 +11,8 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-colorDarkerWhite text-gray-600 p-6 mt-auto">
+    <footer className="flex flex-col gap-5 w-full bg-colorBgBase text-gray-600 p-6 mt-auto">
+      <div className="w-full h-[1px] bg-colorBgGrey"></div>
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <WebsiteLogo />

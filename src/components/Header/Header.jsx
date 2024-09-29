@@ -1,7 +1,7 @@
 import './Header.css';
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
 
@@ -12,6 +12,8 @@ export const Header = () => {
     { to: '/tablets', label: 'Tablets' },
     { to: '/accessories', label: 'Accessories' },
   ];
+
+  const navigate = useNavigate();
 
   const linkClass = (isActive) =>
     isActive
@@ -47,6 +49,7 @@ export const Header = () => {
           <button
             aria-label="Wishlist"
             className="hover:text-colorGrey w-[40px]"
+            onClick={() => navigate('/favorites')} // Navigates to /favorites
           >
             <HeartIcon className="h-6 w-6" />
           </button>

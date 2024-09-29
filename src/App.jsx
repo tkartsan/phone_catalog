@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { FavoritePhones } from './components/FavoritePhones';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
@@ -45,6 +46,7 @@ function App() {
               />
             }
           />
+          <Route path="/favorites" element={<FavoritePhones />} />
         </Routes>
       </main>
       <Footer />

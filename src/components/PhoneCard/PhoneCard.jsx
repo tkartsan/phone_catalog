@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { HeartIcon, RedHeartIcon } from '../../assets'; // Assuming you have both icons available
+import { usePhoneStore } from '../../store';
+
 export const PhoneCard = ({ phone, isShowDiscount }) => {
+  const { addFavorite, removeFavorite, isFavorite } = usePhoneStore();
+
+  const handleToggleFavorite = () => {
+    if (isFavorite(phone.id)) {
+      removeFavorite(phone.id);
+    } else {
+      addFavorite(phone);
+    }
+  };
+
   return (
     <Link to={`/phones/${phone.id}`} className="no-underline">
       <div className="bg-white border-solid border-colorLightGrey p-4 flex flex-col max-w-[272px] hover:shadow-lg transition-shadow duration-200">
@@ -45,7 +58,7 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
             </div>
           </div>
         </div>
-        <div className="mt-0">
+        <div className="mt-0 flex gap-2">
           <button
             className="w-full bg-black text-white px-4 py-2"
             onClick={(e) => {
@@ -54,6 +67,15 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
             }}
           >
             Add to cart
+          </button>
+          <button
+            className="w-10 h-10 flex justify-center items-center"
+            onClick={(e) => {
+              e.preventDefault();
+              handleToggleFavorite();
+            }}
+          >
+            {isFavorite(phone.id) ? <RedHeartIcon /> : <HeartIcon />}
           </button>
         </div>
       </div>
