@@ -53,10 +53,8 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
           <div className="mb-3">
             <div className="flex justify-between">
               <span className="text-gray-500">Screen</span>
-              <span className="text-black text-right">
-                {phone.screen.length > 10
-                  ? `${phone.screen.slice(0, 10)}...`
-                  : phone.screen}
+              <span className="text-black text-right overflow-hidden truncate w-[120px]">
+                {phone.screen}
               </span>
             </div>
             <div className="flex justify-between">
