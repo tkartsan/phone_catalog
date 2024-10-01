@@ -1,0 +1,73 @@
+/* Accessories.css */
+
+.container {
+  max-width: 1136px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  color: #6b7280; /* Equivalent to text-gray-500 in Tailwind */
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.accessory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for accessories */
+  gap: 8px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.pagination {
+  display: flex;
+  list-style: none;
+}
+
+.page,
+.page-prev,
+.page-next {
+  border: 1px solid #d1d5db; /* Equivalent to border-gray-300 */
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.page-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page:hover,
+.page-prev:hover,
+.page-next:hover {
+  background-color: #e5e7eb; /* Equivalent to hover:bg-gray-200 */
+}
+
+.active-page {
+  background-color: #1f2937; /* Equivalent to bg-gray-800 */
+  color: #ffffff; /* White text */
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hidden {
+  display: none;
+}

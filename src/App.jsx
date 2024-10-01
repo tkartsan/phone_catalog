@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { Accessories } from './components/Accessories';
 import { CartPage } from './components/Cart/CartPage';
 import { FavoritePhones } from './components/FavoritePhones';
 import { Footer } from './components/Footer';
@@ -10,8 +11,11 @@ import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
 import { MobilePhones } from './components/MobilePhones';
 import { PhoneDetails } from './components/PhoneDetails';
+import { TabletDetails } from './components/TabletDetails';
+import { Tablets } from './components/Tablets';
 import { useFetch } from './hooks/useFetch';
 import { getPhonesWithNumericId } from './utils/getPhonesWithNumericId';
+import { getTabletsWithNumericId } from './utils/getTabletsWithNumericId';
 
 function App() {
   const { data: phonesData } = useFetch('/api/phones.json');
@@ -38,6 +42,19 @@ function App() {
           <Route
             path="/phones"
             element={<MobilePhones phones={phonesData} />}
+          />
+          <Route path="/tablets" element={<Tablets tablets={tabletsData} />} />
+          <Route
+            path="/tablets/:tabletId"
+            element={
+              <TabletDetails
+                tablets={getTabletsWithNumericId(tabletsData, productsData)}
+              />
+            }
+          />
+          <Route
+            path="/accessories"
+            element={<Accessories accessories={accessoriesData} />}
           />
           <Route
             path="/phones/:phoneId"
