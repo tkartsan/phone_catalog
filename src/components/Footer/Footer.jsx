@@ -19,7 +19,7 @@ export const Footer = () => {
         </div>
         <nav className="flex space-x-8">
           <a
-            href="https://github.com"
+            href="https://github.com/tkartsan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black no-underline"
@@ -27,7 +27,7 @@ export const Footer = () => {
             GITHUB
           </a>
           <a
-            href="https://www.example.com/contacts"
+            href="https://github.com/tkartsan"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black no-underline"

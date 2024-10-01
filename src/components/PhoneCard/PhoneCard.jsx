@@ -53,7 +53,11 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
           <div className="mb-3">
             <div className="flex justify-between">
               <span className="text-gray-500">Screen</span>
-              <span className="text-black text-right">{phone.screen}</span>
+              <span className="text-black text-right">
+                {phone.screen.length > 10
+                  ? `${phone.screen.slice(0, 10)}...`
+                  : phone.screen}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-500">Capacity</span>
@@ -76,7 +80,7 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
             {isInCart(phone.id) ? 'In Cart' : 'Add to cart'}
           </button>
           <button
-            className="w-10 h-10 flex justify-center items-center"
+            className="w-10 h-10 flex justify-center items-center border-solid border-colorLightGrey"
             onClick={(e) => {
               e.preventDefault();
               handleToggleFavorite();

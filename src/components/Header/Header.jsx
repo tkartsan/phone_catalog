@@ -1,9 +1,10 @@
 import './Header.css';
 
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
+import { usePhoneStore } from '../../store'; // Assuming this is your Zustand store import
 
 export const Header = () => {
   const navLinks = [
@@ -14,11 +15,23 @@ export const Header = () => {
   ];
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const linkClass = (isActive) =>
     isActive
-      ? 'text-xs font-extrabold uppercase text-colorBlack border-0 border-b-[10px] border-colorBlack h-full flex items-center justify-center navActive'
+      ? 'text-xs font-extrabold uppercase text-colorBlack border-0 border-b-[10px] border-colorBlack h-full flex items-center justify-center nav-active'
       : 'text-xs font-extrabold uppercase text-colorGrey hover:text-colorGrey h-full flex items-center justify-center';
+
+  const buttonClass = (path) =>
+    location.pathname === path
+      ? 'hover:text-colorGrey w-[86px] h-[86px] nav-active relative'
+      : 'hover:text-colorGrey w-[86px] h-[86px] relative';
+
+  // Fetching the number of favorite items from Zustand
+  const { favorites } = usePhoneStore();
+  const { cart } = usePhoneStore();
+  const favoriteCount = favorites.length;
+  const cartCount = cart.length;
 
   return (
     <header className="w-full bg-colorBgBase h-[86px] text-colorTextBase fixed top-0 z-10">
@@ -44,22 +57,28 @@ export const Header = () => {
         </nav>
 
         {/* Wishlist and Cart icons on the right */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center relative">
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
           <button
             aria-label="Wishlist"
-            className="hover:text-colorGrey w-[40px]"
+            className={buttonClass('/favorites')}
             onClick={() => navigate('/favorites')}
           >
             <HeartIcon className="h-6 w-6" />
+            {favoriteCount > 0 && (
+              <span className="favorites-count">{favoriteCount}</span>
+            )}
           </button>
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
           <button
             aria-label="Cart"
-            className="hover:text-colorGrey w-[40px]"
+            className={buttonClass('/cart')}
             onClick={() => navigate('/cart')}
           >
-            <HomeIcon className="h-6 w-6" />
+            <HomeIcon className="h-6 w-6 " />
+            {favoriteCount > 0 && (
+              <span className="favorites-count heart-icon">{cartCount}</span>
+            )}
           </button>
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
         </div>
