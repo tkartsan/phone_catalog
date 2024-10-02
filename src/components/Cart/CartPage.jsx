@@ -28,7 +28,7 @@ export const CartPage = () => {
             {cart.map((purchase) => (
               <div
                 key={purchase.id}
-                className="flex items-center justify-between border-solid border-colorDifferentGrey p-4 mb-4"
+                className="flex items-center justify-between border-solid border-colorDifferentGrey p-4 pl-6 mb-4"
               >
                 <div className="flex items-center gap-4">
                   <button
@@ -48,10 +48,14 @@ export const CartPage = () => {
                     </h3>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center border px-3 py-1 rounded-md">
+                <div className="flex justify-between w-full w-[250px] gap-4">
+                  <div className="flex items-center justify-between border px-3 py-1 min-w-[160px] ">
                     <button
-                      className="text-gray-700 border-solid border-colorLightGrey w-8 h-8 justify-center"
+                      className={`w-8 h-8 justify-center ${
+                        purchase.quantity === 1
+                          ? 'text-colorLightGrey border-colorLightGrey border-solid'
+                          : 'text-colorGrey border-colorGrey border-solid'
+                      }`}
                       onClick={() =>
                         updateCartQuantity(
                           purchase.id,
@@ -63,7 +67,7 @@ export const CartPage = () => {
                     </button>
                     <span className="px-3">{purchase.quantity || 1}</span>
                     <button
-                      className="text-gray-700 border-solid border-colorLightGrey w-8 h-8 justify-center"
+                      className="w-8 h-8 justify-center text-colorGrey border-solid border-colorGrey"
                       onClick={() =>
                         updateCartQuantity(
                           purchase.id,
@@ -74,7 +78,7 @@ export const CartPage = () => {
                       +
                     </button>
                   </div>
-                  <p className="text-xl font-bold">
+                  <p className="text-xl font-bold whitespace-nowrap">
                     $
                     {(purchase.priceDiscount || purchase.priceRegular) *
                       (purchase.quantity || 1)}
