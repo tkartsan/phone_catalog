@@ -26,3 +26,9 @@ export const tabletColorNamesMap = {
   purple: '	#A020F0',
   spacegray: '#4B4B4B',
 };
+
+export const accessoryColorNamesMap = {
+  'space gray': '#4A4A4A',
+  silver: '#C0C0C0',
+  gold: '#FFD700',
+};

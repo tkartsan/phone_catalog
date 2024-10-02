@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Accessories } from './components/Accessories';
+import { AccessoryDetails } from './components/AccessoryDetails';
 import { CartPage } from './components/Cart/CartPage';
 import { FavoritePhones } from './components/FavoritePhones';
 import { Footer } from './components/Footer';
@@ -14,6 +15,7 @@ import { PhoneDetails } from './components/PhoneDetails';
 import { TabletDetails } from './components/TabletDetails';
 import { Tablets } from './components/Tablets';
 import { useFetch } from './hooks/useFetch';
+import { getAccessoryWithNumericId } from './utils/getAccessoryWithNumericId';
 import { getPhonesWithNumericId } from './utils/getPhonesWithNumericId';
 import { getTabletsWithNumericId } from './utils/getTabletsWithNumericId';
 
@@ -55,6 +57,17 @@ function App() {
           <Route
             path="/accessories"
             element={<Accessories accessories={accessoriesData} />}
+          />
+          <Route
+            path="/accessories/:accessoryId"
+            element={
+              <AccessoryDetails
+                accessories={getAccessoryWithNumericId(
+                  accessoriesData,
+                  productsData,
+                )}
+              />
+            }
           />
           <Route
             path="/phones/:phoneId"

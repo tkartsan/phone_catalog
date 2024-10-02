@@ -11,10 +11,12 @@ import { RenderPhoneSpecs } from './RenderPhoneSpecs';
 export const PhoneDetails = ({ phones }) => {
   const navigate = useNavigate();
   const { phoneId } = useParams();
-  const phone = phones?.find((p) => p.id === phoneId) || {};
-  const [selectedColor, setSelectedColor] = useState(phone?.color);
-  const [selectedCapacity, setSelectedCapacity] = useState(phone?.capacity);
-  const [selectedImage, setSelectedImage] = useState(phone?.images[0]);
+  const phone = phones?.find((p) => p.id === phoneId);
+  const [selectedColor, setSelectedColor] = useState();
+  const [selectedCapacity, setSelectedCapacity] = useState();
+  const [selectedImage, setSelectedImage] = useState();
+
+  console.log({ phones, phone, phoneId });
 
   useEffect(() => {
     if (phone) {
