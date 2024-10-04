@@ -39,10 +39,13 @@ export const usePhoneStore = create(
         })),
       totalItemsInCart: () =>
         get().cart.reduce((acc, purchase) => acc + (purchase.quantity || 1), 0),
+      clearCart: () =>
+        set(() => ({
+          cart: [],
+        })),
       isFavorite: (phoneId) =>
         get().favorites.some((phone) => phone.id === phoneId),
     }),
-
     {
       name: 'phone-store',
     },
