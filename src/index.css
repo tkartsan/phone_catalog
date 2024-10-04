@@ -4,10 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: Mont;
+  font-weight: 700;
+  src: url(../public/fonts/Mont-Bold.otf);
+}
+
+@font-face {
+  font-family: Mont;
+  font-weight: 600;
+  src: url(../public/fonts/Mont-SemiBold.otf);
+}
+
+@font-face {
+  font-family: Mont;
+  font-weight: 400;
+  src: url(../public/fonts/Mont-Regular.otf);
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: Mont, sans-serif;
   height: 100vh;
 }
 
