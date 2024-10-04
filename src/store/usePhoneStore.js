@@ -37,6 +37,8 @@ export const usePhoneStore = create(
         set((state) => ({
           favorites: state.favorites.filter((phone) => phone.id !== phoneId),
         })),
+      totalItemsInCart: () =>
+        get().cart.reduce((acc, purchase) => acc + (purchase.quantity || 1), 0),
       isFavorite: (phoneId) =>
         get().favorites.some((phone) => phone.id === phoneId),
     }),

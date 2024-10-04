@@ -3,17 +3,14 @@ import React from 'react';
 import { usePhoneStore } from '../../store';
 
 export const CartPage = () => {
-  const { cart, removeFromCart, updateCartQuantity } = usePhoneStore();
+  const { cart, removeFromCart, updateCartQuantity, totalItemsInCart } =
+    usePhoneStore();
 
   const totalPrice = cart.reduce(
     (acc, purchase) =>
       acc +
       (purchase.priceDiscount || purchase.priceRegular) *
         (purchase.quantity || 1),
-    0,
-  );
-  const totalItems = cart.reduce(
-    (acc, purchase) => acc + (purchase.quantity || 1),
     0,
   );
 
@@ -43,7 +40,7 @@ export const CartPage = () => {
                     className="w-20 h-20 object-contain rounded-md"
                   />
                   <div>
-                    <h3 className="font-mont text-[14px] leading-[21px] text-left">
+                    <h3 className="font-mont text-[14px] leading-[21px] text-left w-[330px]">
                       {purchase.name}
                     </h3>
                   </div>
@@ -79,9 +76,7 @@ export const CartPage = () => {
                     </button>
                   </div>
                   <p className="text-xl font-bold whitespace-nowrap">
-                    $
-                    {(purchase.priceDiscount || purchase.priceRegular) *
-                      (purchase.quantity || 1)}
+                    ${purchase.priceDiscount}
                   </p>
                 </div>
               </div>
@@ -94,7 +89,8 @@ export const CartPage = () => {
                   ${totalPrice}
                 </div>
                 <div className="flex justify-center text-[14px] font-medium text-colorDifferentGrey">
-                  Total for {totalItems} {totalItems > 1 ? 'items' : 'item'}
+                  Total for {totalItemsInCart()}
+                  {totalItemsInCart() > 1 ? ' items' : ' item'}
                 </div>
               </div>
               <div className="w-full h-[1px] bg-colorDifferentGrey"></div>

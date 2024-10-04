@@ -14,6 +14,8 @@ export const Header = () => {
     { to: '/accessories', label: 'Accessories' },
   ];
 
+  const { totalItemsInCart } = usePhoneStore();
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -77,7 +79,9 @@ export const Header = () => {
           >
             <HomeIcon className="h-6 w-6 " />
             {favoriteCount > 0 && (
-              <span className="favorites-count heart-icon">{cartCount}</span>
+              <span className="favorites-count heart-icon">
+                {totalItemsInCart()}
+              </span>
             )}
           </button>
           <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
