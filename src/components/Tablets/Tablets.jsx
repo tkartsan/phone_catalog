@@ -1,9 +1,9 @@
 import './Tablets.css';
 
 import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
 
 import { Breadcrumb } from '../Breadcrumb';
+import { Pagination } from '../Pagination';
 import { TabletCard } from '../TabletCard';
 
 export const Tablets = ({ tablets }) => {
@@ -104,27 +104,12 @@ export const Tablets = ({ tablets }) => {
         ))}
       </div>
 
-      {tabletsPerPage !== tablets.length && (
-        <div className="pagination-container">
-          <ReactPaginate
-            previousLabel="<"
-            nextLabel=">"
-            breakLabel=""
-            pageCount={totalPages}
-            marginPagesDisplayed={0}
-            pageRangeDisplayed={totalPages}
-            onPageChange={handlePageChange}
-            containerClassName="pagination"
-            activeClassName="active-page"
-            pageClassName="page"
-            pageLinkClassName="page-link"
-            previousClassName="page-prev"
-            nextClassName="page-next"
-            disabledClassName="disabled"
-            breakClassName="hidden"
-          />
-        </div>
-      )}
+      <Pagination
+        devices={tablets}
+        devicesPerPage={tabletsPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };

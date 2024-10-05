@@ -16,8 +16,6 @@ export const PhoneDetails = ({ phones }) => {
   const [selectedCapacity, setSelectedCapacity] = useState();
   const [selectedImage, setSelectedImage] = useState();
 
-  console.log({ phones, phone, phoneId: id });
-
   useEffect(() => {
     if (phone) {
       setSelectedColor(phone.color);
@@ -101,7 +99,7 @@ export const PhoneDetails = ({ phones }) => {
             onClick={handleBackClick}
           >
             <ArrowLeftIcon className="w-5 h-5" />
-            <span className="text-lg">Back</span>
+            <span className="text-colorGrey hover:text-colorBlack">Back</span>
           </div>
         </div>
         <h1 className="text-3xl font-bold mb-6">{phone.name}</h1>

@@ -10,6 +10,7 @@ export const phoneColorNamesMap = {
   silver: '#C0C0C0',
   midnightgreen: '#4E5A49',
   purple: '	#A020F0',
+  sierrablue: '#4545d1',
 };
 
 export const tabletColorNamesMap = {
@@ -31,4 +32,6 @@ export const accessoryColorNamesMap = {
   'space gray': '#4A4A4A',
   silver: '#C0C0C0',
   gold: '#FFD700',
+  red: '#FF0000',
+  blue: '#0000FF',
 };

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import { Breadcrumb } from '../Breadcrumb';
+import { Pagination } from '../Pagination';
 import { PhoneCard } from '../PhoneCard';
 
 export const MobilePhones = ({ phones }) => {
@@ -99,27 +100,12 @@ export const MobilePhones = ({ phones }) => {
         ))}
       </div>
 
-      {phonesPerPage !== phones.length && (
-        <div className="pagination-container">
-          <ReactPaginate
-            previousLabel="<"
-            nextLabel=">"
-            breakLabel=""
-            pageCount={totalPages}
-            marginPagesDisplayed={0}
-            pageRangeDisplayed={totalPages}
-            onPageChange={handlePageChange}
-            containerClassName="pagination"
-            activeClassName="active-page"
-            pageClassName="page"
-            pageLinkClassName="page-link"
-            previousClassName="page-prev"
-            nextClassName="page-next"
-            disabledClassName="disabled"
-            breakClassName="hidden"
-          />
-        </div>
-      )}
+      <Pagination
+        devices={phones}
+        devicesPerPage={phonesPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import './Accessories.css';
 
 import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
 
 import { AccessoryCard } from '../AccessoryCard';
 import { Breadcrumb } from '../Breadcrumb';
+import { Pagination } from '../Pagination';
 
 export const Accessories = ({ accessories }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -114,27 +114,12 @@ export const Accessories = ({ accessories }) => {
         ))}
       </div>
 
-      {accessoriesPerPage !== accessories.length && (
-        <div className="pagination-container">
-          <ReactPaginate
-            previousLabel="<"
-            nextLabel=">"
-            breakLabel=""
-            pageCount={totalPages}
-            marginPagesDisplayed={0}
-            pageRangeDisplayed={totalPages}
-            onPageChange={handlePageChange}
-            containerClassName="pagination"
-            activeClassName="active-page"
-            pageClassName="page"
-            pageLinkClassName="page-link"
-            previousClassName="page-prev"
-            nextClassName="page-next"
-            disabledClassName="disabled"
-            breakClassName="hidden"
-          />
-        </div>
-      )}
+      <Pagination
+        devices={accessories}
+        devicesPerPage={accessoriesPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const Footer = () => {
         <div className="flex items-center">
           <WebsiteLogo />
         </div>
-        <nav className="flex space-x-8 font-medium">
+        <nav className="flex w-[400px] justify-between space-x-8 text-xs font-extrabold">
           <a
             href="https://github.com/tkartsan"
             target="_blank"
@@ -48,13 +48,13 @@ export const Footer = () => {
           onClick={scrollToTop}
         >
           <span className="text-gray-500 font-medium">Back to top</span>
-          <div className="w-8 h-8 flex items-center justify-center border border-gray-400 rounded p-2">
+          <div className="w-8 h-8 flex items-center justify-center border-solid border-bgTextBase p-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="w-4 h-4 text-gray-600"
+              className="w-4 h-4 text-bgTextBase"
             >
               <path
                 strokeLinecap="round"

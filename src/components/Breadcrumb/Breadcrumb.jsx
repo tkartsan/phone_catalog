@@ -23,14 +23,17 @@ export const Breadcrumb = () => {
   const breadCrumbDeviceName = currentDevice?.name;
 
   return (
-    <nav className="flex gap-2 pb-7">
+    <nav className="flex items-center gap-2 pb-7 leading-3">
       <Link to="/" className="color-colorTextBase">
         <HomeIcon className="w-4 h-4" />
       </Link>
       <div className="text-colorGrey">
         <ArrowRightIcon />
       </div>
-      <Link to={`/${categoryName.toLowerCase()}`} className="text-colorGrey">
+      <Link
+        to={`/${categoryName.toLowerCase()}`}
+        className="text-colorBlack hover:text-colorGrey"
+      >
         {categoryName}
       </Link>
       {id && (
