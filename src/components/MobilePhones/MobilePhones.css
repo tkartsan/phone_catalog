@@ -1,5 +1,3 @@
-/* MobilePhones.css */
-
 .container {
   max-width: 1136px;
   margin: 0 auto;
@@ -12,7 +10,7 @@
 }
 
 .subtitle {
-  color: #6b7280; /* Equivalent to text-gray-500 in Tailwind */
+  color: #6b7280;
   margin-bottom: 16px;
   text-align: left;
 }
@@ -38,7 +36,7 @@
 .page,
 .page-prev,
 .page-next {
-  border: 1px solid #d1d5db; /* Equivalent to border-gray-300 */
+  border: 1px solid #d1d5db;
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
@@ -55,12 +53,12 @@
 .page:hover,
 .page-prev:hover,
 .page-next:hover {
-  background-color: #e5e7eb; /* Equivalent to hover:bg-gray-200 */
+  background-color: #e5e7eb;
 }
 
 .active-page {
-  background-color: #1f2937; /* Equivalent to bg-gray-800 */
-  color: #ffffff; /* White text */
+  background-color: #1f2937;
+  color: #ffffff;
 }
 
 .disabled {

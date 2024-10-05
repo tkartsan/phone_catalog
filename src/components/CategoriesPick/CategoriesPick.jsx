@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 import accessoriescover from './../../assets/accessoriescover.png';
 import phonecover from './../../assets/phonescover.png';
@@ -16,21 +16,21 @@ export const CategoriesPick = ({ phones, tablets, accessories }) => {
           image: phonecover,
           models: `${phones.length} models`,
           bgColor: '#6D6474',
-          link: '/phones', // URL path for redirection
+          link: '/phones',
         },
         {
           title: 'Tablets',
           image: tabletcover,
           models: `${tablets.length} models`,
           bgColor: '#808080',
-          link: '/tablets', // URL path for redirection
+          link: '/tablets',
         },
         {
           title: 'Accessories',
           image: accessoriescover,
           models: `${accessories.length} models`,
           bgColor: 'rgb(50%, 30%, 20%)',
-          link: '/accessories', // URL path for redirection
+          link: '/accessories',
         },
       ];
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
-import { usePhoneStore } from '../../store'; // Assuming this is your Zustand store import
+import { usePhoneStore } from '../../store';
 
 export const Header = () => {
   const navLinks = [
@@ -29,7 +29,6 @@ export const Header = () => {
       ? 'hover:text-colorGrey w-[86px] h-[86px] nav-active relative'
       : 'hover:text-colorGrey w-[86px] h-[86px] relative';
 
-  // Fetching the number of favorite items from Zustand
   const { favorites } = usePhoneStore();
   const { cart } = usePhoneStore();
   const favoriteCount = favorites.length;
@@ -42,7 +41,6 @@ export const Header = () => {
           <WebsiteLogo />
         </div>
 
-        {/* Navigation links in the center */}
         <nav className="h-full">
           <ul className="flex space-x-12 font-medium list-none h-full m-0">
             {navLinks.map((link) => (
@@ -58,9 +56,8 @@ export const Header = () => {
           </ul>
         </nav>
 
-        {/* Wishlist and Cart icons on the right */}
         <div className="flex items-center relative">
-          <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
+          <div className="w-[1px] h-[86px] bg-colorBorderGrey"></div>
           <button
             aria-label="Wishlist"
             className={buttonClass('/favorites')}
@@ -71,7 +68,7 @@ export const Header = () => {
               <span className="favorites-count">{favoriteCount}</span>
             )}
           </button>
-          <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
+          <div className="w-[1px] h-[86px] bg-colorBorderGrey"></div>
           <button
             aria-label="Cart"
             className={buttonClass('/cart')}
@@ -84,10 +81,10 @@ export const Header = () => {
               </span>
             )}
           </button>
-          <div className="w-[1px] h-[86px] bg-colorBgGrey"></div>
+          <div className="w-[1px] h-[86px] bg-colorBorderGrey"></div>
         </div>
       </div>
-      <div className="w-full h-[1px] bg-colorBgGrey"></div>
+      <div className="w-full h-[1px] bg-colorBorderGrey"></div>
     </header>
   );
 };

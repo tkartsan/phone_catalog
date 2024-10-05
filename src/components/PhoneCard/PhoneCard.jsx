@@ -71,8 +71,8 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
           <button
             className="w-full bg-black text-white px-4 py-2"
             onClick={(e) => {
-              e.preventDefault(); // Prevents Link navigation when the button is clicked
-              handleAddToCart(); // Add to cart logic
+              e.preventDefault();
+              handleAddToCart();
             }}
           >
             {isInCart(phone.id) ? 'In Cart' : 'Add to cart'}

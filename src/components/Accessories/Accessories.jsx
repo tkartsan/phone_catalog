@@ -3,7 +3,7 @@ import './Accessories.css';
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import { AccessoryCard } from '../AccessoryCard'; // Make sure to import AccessoryCard here
+import { AccessoryCard } from '../AccessoryCard';
 import { Breadcrumb } from '../Breadcrumb';
 
 export const Accessories = ({ accessories }) => {

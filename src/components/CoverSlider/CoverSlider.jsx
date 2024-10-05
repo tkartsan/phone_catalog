@@ -1,6 +1,5 @@
 import './CoverSlider.css';
 
-// import CoverSlider
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
@@ -9,10 +8,6 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
-
-// import firstimg from './../../assets/images/';
-// import secondimg from './../../assets/2-second-part.png';
-// import thirdimg from './../../assets/3.png';
 
 export const CoverSlider = () => {
   const navigate = useNavigate();

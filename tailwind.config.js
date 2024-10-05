@@ -51,6 +51,7 @@ export default {
         colorBlack: '#000000',
         colorDarkerWhite: '#D9D9D9',
         colorDifferentGrey: '#89939A',
+        colorBorderGrey: '#e2e6e9',
       },
     },
   },
