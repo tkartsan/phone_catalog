@@ -11,13 +11,13 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="flex flex-col gap-5 w-full bg-colorBgBase text-gray-600 p-6 mt-auto">
-      <div className="w-full h-[1px] bg-colorBgGrey"></div>
+    <footer className="flex flex-col gap-5 w-full bg-colorBgBase text-gray-600 py-6 mt-auto">
+      <div className="w-full h-[1px] bg-colorBorderGrey"></div>
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <WebsiteLogo />
         </div>
-        <nav className="flex space-x-8">
+        <nav className="flex space-x-8 font-medium">
           <a
             href="https://github.com/tkartsan"
             target="_blank"
