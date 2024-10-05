@@ -36,7 +36,7 @@ export const Header = () => {
   const cartCount = cart.length;
 
   return (
-    <header className="w-full bg-colorBgBase h-[86px] text-colorTextBase fixed top-0 z-10">
+    <header className="w-full bg-colorBgBase h-[86px] text-colorTextBase fixed top-0 z-40">
       <div className="flex justify-between items-center container mx-auto h-full">
         <div className="flex items-center">
           <WebsiteLogo />
