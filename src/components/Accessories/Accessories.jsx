@@ -20,7 +20,11 @@ export const Accessories = ({ accessories }) => {
   };
 
   const handleItemsPerPageChange = (event) => {
-    setAccessoriesPerPage(parseInt(event.target.value, 10));
+    const value = event.target.value;
+
+    setAccessoriesPerPage(
+      value === 'ALL' ? accessories.length : parseInt(value, 10),
+    );
     setCurrentPage(0);
   };
 
@@ -45,7 +49,10 @@ export const Accessories = ({ accessories }) => {
   });
 
   const accessoryCount = sortedAccessories.length;
-  const totalPages = Math.ceil(accessoryCount / accessoriesPerPage);
+  const totalPages =
+    accessoriesPerPage === accessories.length
+      ? 1
+      : Math.ceil(accessoryCount / accessoriesPerPage);
 
   const indexOfLastAccessory = (currentPage + 1) * accessoriesPerPage;
   const indexOfFirstAccessory = indexOfLastAccessory - accessoriesPerPage;
@@ -56,7 +63,7 @@ export const Accessories = ({ accessories }) => {
 
   return (
     <div className="container">
-      <Breadcrumb currentName="Accessories" />
+      <Breadcrumb />
       <div className="title">Accessories</div>
       <p className="subtitle">{accessoryCount} models</p>
 
@@ -80,7 +87,11 @@ export const Accessories = ({ accessories }) => {
           <div className="font-semibold mb-1 text-colorGrey">Items on page</div>
           <select
             id="items-per-page"
-            value={accessoriesPerPage}
+            value={
+              accessoriesPerPage === accessories.length
+                ? 'ALL'
+                : accessoriesPerPage
+            }
             onChange={handleItemsPerPageChange}
             className="flex border-solid border-colorGrey p-2"
           >
@@ -88,6 +99,7 @@ export const Accessories = ({ accessories }) => {
             <option value="16">16</option>
             <option value="24">24</option>
             <option value="48">48</option>
+            <option value="ALL">ALL</option>
           </select>
         </div>
       </div>
@@ -102,25 +114,27 @@ export const Accessories = ({ accessories }) => {
         ))}
       </div>
 
-      <div className="pagination-container">
-        <ReactPaginate
-          previousLabel="<"
-          nextLabel=">"
-          breakLabel=""
-          pageCount={totalPages}
-          marginPagesDisplayed={0}
-          pageRangeDisplayed={totalPages}
-          onPageChange={handlePageChange}
-          containerClassName="pagination"
-          activeClassName="active-page"
-          pageClassName="page"
-          pageLinkClassName="page-link"
-          previousClassName="page-prev"
-          nextClassName="page-next"
-          disabledClassName="disabled"
-          breakClassName="hidden"
-        />
-      </div>
+      {accessoriesPerPage !== accessories.length && (
+        <div className="pagination-container">
+          <ReactPaginate
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel=""
+            pageCount={totalPages}
+            marginPagesDisplayed={0}
+            pageRangeDisplayed={totalPages}
+            onPageChange={handlePageChange}
+            containerClassName="pagination"
+            activeClassName="active-page"
+            pageClassName="page"
+            pageLinkClassName="page-link"
+            previousClassName="page-prev"
+            nextClassName="page-next"
+            disabledClassName="disabled"
+            breakClassName="hidden"
+          />
+        </div>
+      )}
     </div>
   );
 };

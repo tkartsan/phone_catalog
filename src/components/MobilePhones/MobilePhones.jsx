@@ -20,7 +20,9 @@ export const MobilePhones = ({ phones }) => {
   };
 
   const handleItemsPerPageChange = (event) => {
-    setPhonesPerPage(parseInt(event.target.value, 10));
+    const value = event.target.value;
+
+    setPhonesPerPage(value === 'ALL' ? phones.length : parseInt(value, 10));
     setCurrentPage(0);
   };
 
@@ -45,7 +47,8 @@ export const MobilePhones = ({ phones }) => {
   });
 
   const phoneCount = sortedPhones.length;
-  const totalPages = Math.ceil(phoneCount / phonesPerPage);
+  const totalPages =
+    phonesPerPage === phones.length ? 1 : Math.ceil(phoneCount / phonesPerPage);
 
   const indexOfLastPhone = (currentPage + 1) * phonesPerPage;
   const indexOfFirstPhone = indexOfLastPhone - phonesPerPage;
@@ -53,7 +56,7 @@ export const MobilePhones = ({ phones }) => {
 
   return (
     <div className="container">
-      <Breadcrumb currentName="Phones" />
+      <Breadcrumb />
       <div className="title">Mobile Phones</div>
       <p className="subtitle">{phoneCount} models</p>
 
@@ -77,7 +80,7 @@ export const MobilePhones = ({ phones }) => {
           <div className="font-semibold mb-1 text-colorGrey">Items on page</div>
           <select
             id="items-per-page"
-            value={phonesPerPage}
+            value={phonesPerPage === phones.length ? 'ALL' : phonesPerPage}
             onChange={handleItemsPerPageChange}
             className="flex border-solid border-colorGrey p-2"
           >
@@ -85,6 +88,7 @@ export const MobilePhones = ({ phones }) => {
             <option value="16">16</option>
             <option value="24">24</option>
             <option value="48">48</option>
+            <option value="ALL">ALL</option>
           </select>
         </div>
       </div>
@@ -95,25 +99,27 @@ export const MobilePhones = ({ phones }) => {
         ))}
       </div>
 
-      <div className="pagination-container">
-        <ReactPaginate
-          previousLabel="<"
-          nextLabel=">"
-          breakLabel=""
-          pageCount={totalPages}
-          marginPagesDisplayed={0}
-          pageRangeDisplayed={totalPages}
-          onPageChange={handlePageChange}
-          containerClassName="pagination"
-          activeClassName="active-page"
-          pageClassName="page"
-          pageLinkClassName="page-link"
-          previousClassName="page-prev"
-          nextClassName="page-next"
-          disabledClassName="disabled"
-          breakClassName="hidden"
-        />
-      </div>
+      {phonesPerPage !== phones.length && (
+        <div className="pagination-container">
+          <ReactPaginate
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel=""
+            pageCount={totalPages}
+            marginPagesDisplayed={0}
+            pageRangeDisplayed={totalPages}
+            onPageChange={handlePageChange}
+            containerClassName="pagination"
+            activeClassName="active-page"
+            pageClassName="page"
+            pageLinkClassName="page-link"
+            previousClassName="page-prev"
+            nextClassName="page-next"
+            disabledClassName="disabled"
+            breakClassName="hidden"
+          />
+        </div>
+      )}
     </div>
   );
 };
