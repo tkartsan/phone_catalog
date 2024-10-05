@@ -10,13 +10,13 @@ import { RenderPhoneSpecs } from './RenderPhoneSpecs';
 
 export const PhoneDetails = ({ phones }) => {
   const navigate = useNavigate();
-  const { phoneId } = useParams();
-  const phone = phones?.find((p) => p.id === phoneId);
+  const { id } = useParams();
+  const phone = phones?.find((p) => p.id === id);
   const [selectedColor, setSelectedColor] = useState();
   const [selectedCapacity, setSelectedCapacity] = useState();
   const [selectedImage, setSelectedImage] = useState();
 
-  console.log({ phones, phone, phoneId });
+  console.log({ phones, phone, phoneId: id });
 
   useEffect(() => {
     if (phone) {
@@ -95,7 +95,7 @@ export const PhoneDetails = ({ phones }) => {
     <div className="w-full flex justify-center">
       <div className="flex flex-col w-[1136px] gap-6 py-4">
         <div className="flex flex-col gap-2">
-          <Breadcrumb currentName={phone.name} />
+          <Breadcrumb />
           <div
             className="flex items-center gap-2 cursor-pointer text-gray-600"
             onClick={handleBackClick}

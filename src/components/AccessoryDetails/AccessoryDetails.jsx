@@ -9,8 +9,8 @@ import { RenderAccessorySpecs } from './RenderAccessorySpecs';
 
 export const AccessoryDetails = ({ accessories }) => {
   const navigate = useNavigate();
-  const { accessoryId } = useParams();
-  const accessory = accessories?.find((a) => a.id === accessoryId);
+  const { id } = useParams();
+  const accessory = accessories?.find((a) => a.id === id);
   const [selectedColor, setSelectedColor] = useState();
   const [selectedCapacity, setSelectedCapacity] = useState();
   const [selectedImage, setSelectedImage] = useState();
@@ -92,7 +92,7 @@ export const AccessoryDetails = ({ accessories }) => {
     <div className="w-full flex justify-center">
       <div className="flex flex-col w-[1136px] gap-6 py-4">
         <div className="flex flex-col gap-2">
-          <Breadcrumb currentName={accessory.name} />
+          <Breadcrumb />
           <div
             className="flex items-center gap-2 cursor-pointer text-gray-600"
             onClick={handleBackClick}

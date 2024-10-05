@@ -47,7 +47,7 @@ function App() {
           />
           <Route path="/tablets" element={<Tablets tablets={tabletsData} />} />
           <Route
-            path="/tablets/:tabletId"
+            path="/tablets/:id"
             element={
               <TabletDetails
                 tablets={getTabletsWithNumericId(tabletsData, productsData)}
@@ -59,7 +59,7 @@ function App() {
             element={<Accessories accessories={accessoriesData} />}
           />
           <Route
-            path="/accessories/:accessoryId"
+            path="/accessories/:id"
             element={
               <AccessoryDetails
                 accessories={getAccessoryWithNumericId(
@@ -70,7 +70,7 @@ function App() {
             }
           />
           <Route
-            path="/phones/:phoneId"
+            path="/phones/:id"
             element={
               <PhoneDetails
                 phones={getPhonesWithNumericId(phonesData, productsData)}

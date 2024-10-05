@@ -9,8 +9,8 @@ import { TabletPurchasePanel } from './TabletPurchasePanel';
 
 export const TabletDetails = ({ tablets }) => {
   const navigate = useNavigate();
-  const { tabletId } = useParams();
-  const tablet = tablets?.find((t) => t.id === tabletId);
+  const { id } = useParams();
+  const tablet = tablets?.find((t) => t.id === id);
   const [selectedColor, setSelectedColor] = useState();
   const [selectedCapacity, setSelectedCapacity] = useState();
   const [selectedImage, setSelectedImage] = useState();
@@ -92,7 +92,7 @@ export const TabletDetails = ({ tablets }) => {
     <div className="w-full flex justify-center">
       <div className="flex flex-col w-[1136px] gap-6 py-4">
         <div className="flex flex-col gap-2">
-          <Breadcrumb currentName={tablet.name} />
+          <Breadcrumb />
           <div
             className="flex items-center gap-2 cursor-pointer text-gray-600"
             onClick={handleBackClick}
