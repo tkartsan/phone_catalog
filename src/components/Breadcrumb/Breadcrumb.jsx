@@ -30,12 +30,16 @@ export const Breadcrumb = () => {
       <div className="text-colorGrey">
         <ArrowRightIcon />
       </div>
-      <Link
-        to={`/${categoryName.toLowerCase()}`}
-        className="text-colorGrey hover:text-colorBlack"
-      >
-        {categoryName}
-      </Link>
+      {id ? (
+        <Link
+          to={`/${categoryName.toLowerCase()}`}
+          className="text-colorGrey hover:text-colorBlack"
+        >
+          {categoryName}
+        </Link>
+      ) : (
+        <div className="text-colorGrey">{categoryName}</div>
+      )}
       {id && (
         <>
           <div className="text-colorGrey">
