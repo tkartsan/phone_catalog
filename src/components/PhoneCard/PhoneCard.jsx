@@ -5,8 +5,14 @@ import { HeartIcon, RedHeartIcon } from '../../assets';
 import { usePhoneStore } from '../../store';
 
 export const PhoneCard = ({ phone, isShowDiscount }) => {
-  const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
-    usePhoneStore();
+  const {
+    addToCart,
+    removeFromCart,
+    isInCart,
+    isFavorite,
+    addFavorite,
+    removeFavorite,
+  } = usePhoneStore();
 
   const handleToggleFavorite = () => {
     if (isFavorite(phone.id)) {
@@ -16,11 +22,15 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    if (!isInCart(phone.id)) {
-      addToCart(phone);
+  const handleCartClick = () => {
+    if (isInCart(phone.id)) {
+      removeFromCart(phone.id); // Remove from cart if already added
+    } else {
+      addToCart(phone); // Add to cart if not already added
     }
   };
+
+  const isAddedToCart = isInCart(phone.id);
 
   return (
     <Link to={`/phones/${phone.id}`} className="no-underline">
@@ -69,19 +79,23 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
         </div>
         <div className="flex gap-2.5">
           <button
-            className="w-full bg-black text-white px-4 py-2"
+            className={`w-full px-4 py-2 border ${
+              isAddedToCart
+                ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+                : 'bg-black text-white'
+            }`}
             onClick={(e) => {
               e.preventDefault();
-              handleAddToCart();
+              handleCartClick(); // Toggle add/remove from cart
             }}
           >
-            {isInCart(phone.id) ? 'In Cart' : 'Add to cart'}
+            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
           </button>
           <button
             className="w-11 h-10 flex justify-center items-center border-solid border-colorLightGrey border"
             onClick={(e) => {
               e.preventDefault();
-              handleToggleFavorite();
+              handleToggleFavorite(); // Toggle favorite
             }}
           >
             {isFavorite(phone.id) ? <RedHeartIcon /> : <HeartIcon />}

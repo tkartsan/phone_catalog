@@ -9,8 +9,14 @@ export const TabletCard = ({ tablet, isShowDiscount }) => {
     return null;
   }
 
-  const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
-    usePhoneStore();
+  const {
+    addFavorite,
+    removeFavorite,
+    isFavorite,
+    addToCart,
+    removeFromCart,
+    isInCart,
+  } = usePhoneStore();
 
   const handleToggleFavorite = () => {
     if (isFavorite(tablet.id)) {
@@ -20,11 +26,15 @@ export const TabletCard = ({ tablet, isShowDiscount }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    if (!isInCart(tablet.id)) {
-      addToCart(tablet);
+  const handleCartClick = () => {
+    if (isInCart(tablet.id)) {
+      removeFromCart(tablet.id); // Remove from cart if already added
+    } else {
+      addToCart(tablet); // Add to cart if not already added
     }
   };
+
+  const isAddedToCart = isInCart(tablet.id);
 
   return (
     <Link to={`/tablets/${tablet.id}`} className="no-underline">
@@ -73,13 +83,17 @@ export const TabletCard = ({ tablet, isShowDiscount }) => {
         </div>
         <div className="mt-0 flex gap-2">
           <button
-            className="w-full bg-black text-white px-4 py-2"
+            className={`w-full px-4 py-2 border ${
+              isAddedToCart
+                ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+                : 'bg-black text-white'
+            }`}
             onClick={(e) => {
               e.preventDefault();
-              handleAddToCart();
+              handleCartClick(); // Toggle add/remove from cart
             }}
           >
-            {isInCart(tablet.id) ? 'In Cart' : 'Add to cart'}
+            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
           </button>
           <button
             className="w-10 h-10 flex justify-center items-center border-solid border-colorLightGrey"

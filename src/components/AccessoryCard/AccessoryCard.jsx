@@ -5,8 +5,14 @@ import { HeartIcon, RedHeartIcon } from '../../assets';
 import { usePhoneStore } from '../../store';
 
 export const AccessoryCard = ({ accessory, isShowDiscount }) => {
-  const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
-    usePhoneStore();
+  const {
+    addFavorite,
+    removeFavorite,
+    isFavorite,
+    addToCart,
+    removeFromCart,
+    isInCart,
+  } = usePhoneStore();
 
   const handleToggleFavorite = () => {
     if (isFavorite(accessory.id)) {
@@ -16,11 +22,15 @@ export const AccessoryCard = ({ accessory, isShowDiscount }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    if (!isInCart(accessory.id)) {
-      addToCart(accessory);
+  const handleCartClick = () => {
+    if (isInCart(accessory.id)) {
+      removeFromCart(accessory.id); // Remove from cart if already added
+    } else {
+      addToCart(accessory); // Add to cart if not already added
     }
   };
+
+  const isAddedToCart = isInCart(accessory.id);
 
   return (
     <Link to={`/accessories/${accessory.id}`} className="no-underline">
@@ -68,13 +78,17 @@ export const AccessoryCard = ({ accessory, isShowDiscount }) => {
         </div>
         <div className="mt-0 flex gap-2">
           <button
-            className="w-full bg-black text-white px-4 py-2"
+            className={`w-full px-4 py-2 border ${
+              isAddedToCart
+                ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+                : 'bg-black text-white'
+            }`}
             onClick={(e) => {
               e.preventDefault();
-              handleAddToCart();
+              handleCartClick(); // Toggle add/remove from cart
             }}
           >
-            {isInCart(accessory.id) ? 'In Cart' : 'Add to cart'}
+            {isAddedToCart ? 'Added to cart' : 'Add to cart'}
           </button>
           <button
             className="w-10 h-10 flex justify-center items-center border-solid border-colorLightGrey"
