@@ -9,8 +9,6 @@ export const TabletCard = ({ tablet, isShowDiscount }) => {
     return null;
   }
 
-  console.log({ tablet });
-
   const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
     usePhoneStore();
 
@@ -36,7 +34,7 @@ export const TabletCard = ({ tablet, isShowDiscount }) => {
             <img
               src={`/${tablet.images[0]}`}
               alt={tablet.name}
-              className="w-[150px] h-[200px] object-contain"
+              className="w-[150px] h-[200px] object-contain transform transition-transform duration-300 hover:scale-110"
             />
           </div>
           <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis min-h-[56px]">

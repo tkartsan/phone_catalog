@@ -30,7 +30,7 @@ export const AccessoryCard = ({ accessory, isShowDiscount }) => {
             <img
               src={`/${accessory.images[0]}`}
               alt={accessory.name}
-              className="w-[150px] h-[150px] object-contain"
+              className="w-[150px] h-[150px] object-contain transform transition-transform duration-300 hover:scale-110"
             />
           </div>
           <h3 className="font-bold text-lg text-black whitespace-normal overflow-hidden text-ellipsis min-h-[56px]">

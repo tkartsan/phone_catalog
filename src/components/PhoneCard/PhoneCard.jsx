@@ -30,7 +30,7 @@ export const PhoneCard = ({ phone, isShowDiscount }) => {
             <img
               src={`/${phone.images[0]}`}
               alt={phone.name}
-              className="w-[150px] h-[200px] object-contain"
+              className="w-[150px] h-[200px] object-contain transform transition-transform duration-300 hover:scale-110"
             />
           </div>
           <div className="text-14 font-semibold text-left text-black whitespace-normal overflow-hidden text-ellipsis min-h-[42px]">
