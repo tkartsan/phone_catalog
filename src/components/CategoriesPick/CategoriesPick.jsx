@@ -47,7 +47,7 @@ export const CategoriesPick = ({ phones, tablets, accessories }) => {
             <div key={index} className="w-[368px]">
               <Link to={category.link}>
                 <div
-                  className="w-[368px] h-[368px] relative"
+                  className="w-[368px] h-[368px] relative transform transition-transform duration-300 hover:scale-105"
                   style={{ backgroundColor: category.bgColor }}
                 >
                   <img
