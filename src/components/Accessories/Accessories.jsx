@@ -67,7 +67,7 @@ export const Accessories = ({ accessories }) => {
       <div className="title">Accessories</div>
       <p className="subtitle">{accessoryCount} models</p>
 
-      <div className="flex gap-6 mb-4">
+      <div className="flex gap-6 mb-8">
         <div className="flex flex-col">
           <div className="font-semibold mb-1 text-colorGrey">Sort by</div>
           <select

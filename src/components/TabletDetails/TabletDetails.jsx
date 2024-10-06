@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeftIcon } from '../../assets';
 
 import { Breadcrumb } from './../Breadcrumb';
+import { TabletsSlider } from './../TabletsSlider';
 import { RenderTabletSpecs } from './RenderTabletSpecs';
 import { TabletPurchasePanel } from './TabletPurchasePanel';
 
@@ -142,7 +143,13 @@ export const TabletDetails = ({ tablets }) => {
           <RenderTabletSpecs tablet={tablet} />
         </div>
         {!!tablets.length ? (
-          <div className="mt-8"></div>
+          <div className="mt-8">
+            <TabletsSlider
+              tablets={tablets.slice(0, 10)}
+              title="You may also like"
+              isShowDiscount={true}
+            />
+          </div>
         ) : (
           <p className="text-center">Loading...</p>
         )}

@@ -5,6 +5,12 @@ import { HeartIcon, RedHeartIcon } from '../../assets';
 import { usePhoneStore } from '../../store';
 
 export const TabletCard = ({ tablet, isShowDiscount }) => {
+  if (!tablet) {
+    return null;
+  }
+
+  console.log({ tablet });
+
   const { addFavorite, removeFavorite, isFavorite, addToCart, isInCart } =
     usePhoneStore();
 

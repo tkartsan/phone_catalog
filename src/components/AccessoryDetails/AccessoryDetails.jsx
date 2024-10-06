@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
+import { AccessoriesSlider } from '../AccessoriesSlider';
 
 import { Breadcrumb } from './../Breadcrumb';
 import { AccessoryPurchasePanel } from './AccessoryPurchasePanel';
@@ -142,7 +143,13 @@ export const AccessoryDetails = ({ accessories }) => {
           <RenderAccessorySpecs accessory={accessory} />
         </div>
         {!!accessories.length ? (
-          <div className="mt-8"></div>
+          <div className="mt-8">
+            <AccessoriesSlider
+              accessories={accessories.slice(0, 10)}
+              title="You may also like"
+              isShowDiscount={true}
+            />
+          </div>
         ) : (
           <p className="text-center">Loading...</p>
         )}

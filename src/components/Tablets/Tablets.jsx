@@ -65,7 +65,7 @@ export const Tablets = ({ tablets }) => {
       <div className="title">Tablets</div>
       <p className="subtitle">{tabletCount} models</p>
 
-      <div className="flex gap-6 mb-4">
+      <div className="flex gap-6 mb-8">
         <div className="flex flex-col">
           <div className="font-semibold mb-1 text-colorGrey">Sort by</div>
           <select
