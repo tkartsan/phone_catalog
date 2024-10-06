@@ -32,7 +32,7 @@ export const Breadcrumb = () => {
       </div>
       <Link
         to={`/${categoryName.toLowerCase()}`}
-        className="text-colorBlack hover:text-colorGrey"
+        className="text-colorGrey hover:text-colorBlack"
       >
         {categoryName}
       </Link>
