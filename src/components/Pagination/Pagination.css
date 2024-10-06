@@ -14,17 +14,23 @@
 .page-prev,
 .page-next {
   border: 1px solid #d1d5db;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 0; /* Remove padding from the li element */
   cursor: pointer;
   margin-right: 4px;
+  width: 40px; /* Adjust the width as necessary */
+  height: 40px; /* Adjust the height as necessary */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Ensures all elements (numbers, prev/next) are centered */
 }
 
 .page-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 40px; /* Centers the text vertically */
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .page:hover,
