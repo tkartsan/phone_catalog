@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { accessoryColorNamesMap } from '../../global/constants';
+import { usePhoneStore } from '../../store';
+
 export const AccessoryPurchasePanel = ({
   accessory,
   selectedColor,
@@ -8,6 +10,17 @@ export const AccessoryPurchasePanel = ({
   selectedCapacity,
   handleCapacityChange,
 }) => {
+  const { addToCart, removeFromCart, isInCart } = usePhoneStore();
+  const isAccessoryInCart = isInCart(accessory.id);
+
+  const handleCartAction = () => {
+    if (isAccessoryInCart) {
+      removeFromCart(accessory.id);
+    } else {
+      addToCart(accessory);
+    }
+  };
+
   return (
     <div className="flex flex-col w-[400px] space-y-4">
       <p className="text-right text-sm text-gray-500">
@@ -57,8 +70,15 @@ export const AccessoryPurchasePanel = ({
           </p>
         </div>
       </div>
-      <button className="px-4 py-3 bg-black text-white text-center">
-        Add to cart
+      <button
+        className={`h-[46px] px-4 py-3 transition duration-300 ${
+          isAccessoryInCart
+            ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+            : 'bg-black text-white'
+        }`}
+        onClick={handleCartAction}
+      >
+        {isAccessoryInCart ? 'Added to cart' : 'Add to cart'}
       </button>
       <div className="flex flex-col space-y-2 mt-4">
         <div className="flex justify-between">

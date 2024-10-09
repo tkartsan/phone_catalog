@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { phoneColorNamesMap } from '../../global/constants';
+import { usePhoneStore } from '../../store';
+
 export const PhonePurchasePanel = ({
   phone,
   selectedColor,
@@ -8,6 +10,21 @@ export const PhonePurchasePanel = ({
   selectedCapacity,
   handleCapacityChange,
 }) => {
+  // Import methods from the store
+  const { addToCart, removeFromCart, isInCart } = usePhoneStore();
+
+  // Check if the phone is already in the cart
+  const isPhoneInCart = isInCart(phone.id);
+
+  // Handle the add/remove from cart logic
+  const handleCartAction = () => {
+    if (isPhoneInCart) {
+      removeFromCart(phone.id);
+    } else {
+      addToCart(phone);
+    }
+  };
+
   return (
     <div className="flex flex-col w-[400px] space-y-4">
       <p className="text-right text-sm text-gray-500">ID: {phone.numericId}</p>
@@ -55,8 +72,15 @@ export const PhonePurchasePanel = ({
           </p>
         </div>
       </div>
-      <button className="px-4 py-3 bg-black text-white text-center">
-        Add to cart
+      <button
+        className={`h-[46px] px-4 py-3 ${
+          isPhoneInCart
+            ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+            : 'bg-black text-white'
+        }`}
+        onClick={handleCartAction}
+      >
+        {isPhoneInCart ? 'Added to cart' : 'Add to cart'}
       </button>
       <div className="flex flex-col space-y-2 mt-4">
         <div className="flex justify-between">

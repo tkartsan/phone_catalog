@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { tabletColorNamesMap } from '../../global/constants';
+import { usePhoneStore } from '../../store';
+
 export const TabletPurchasePanel = ({
   tablet,
   selectedColor,
@@ -8,6 +10,17 @@ export const TabletPurchasePanel = ({
   selectedCapacity,
   handleCapacityChange,
 }) => {
+  const { addToCart, removeFromCart, isInCart } = usePhoneStore();
+  const isTabletInCart = isInCart(tablet.id);
+
+  const handleCartAction = () => {
+    if (isTabletInCart) {
+      removeFromCart(tablet.id);
+    } else {
+      addToCart(tablet);
+    }
+  };
+
   return (
     <div className="flex flex-col w-[400px] space-y-4">
       <p className="text-right text-sm text-gray-500">ID: {tablet.numericId}</p>
@@ -55,8 +68,15 @@ export const TabletPurchasePanel = ({
           </p>
         </div>
       </div>
-      <button className="px-4 py-3 bg-black text-white text-center">
-        Add to cart
+      <button
+        className={`h-[46px] px-4 py-3 transition duration-300 ${
+          isTabletInCart
+            ? 'bg-white text-green-500 border-colorLightGrey border-solid'
+            : 'bg-black text-white'
+        }`}
+        onClick={handleCartAction}
+      >
+        {isTabletInCart ? 'Added to cart' : 'Add to cart'}
       </button>
       <div className="flex flex-col space-y-2 mt-4">
         <div className="flex justify-between">
