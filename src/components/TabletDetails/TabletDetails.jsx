@@ -5,8 +5,8 @@ import { ArrowLeftIcon } from '../../assets';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
+import { PurchasePanel } from './../Shared/PurchasePanel';
 import { TabletsSlider } from './../TabletsSlider';
-import { TabletPurchasePanel } from './TabletPurchasePanel';
 
 export const TabletDetails = ({ tablets }) => {
   const navigate = useNavigate();
@@ -130,8 +130,9 @@ export const TabletDetails = ({ tablets }) => {
               className="h-[464px] object-contain"
             />
           </div>
-          <TabletPurchasePanel
-            tablet={tablet}
+          <PurchasePanel
+            item={tablet}
+            itemType="tablet"
             selectedColor={selectedColor}
             selectedCapacity={selectedCapacity}
             handleColorChange={handleColorChange}

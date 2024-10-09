@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
 import { AccessoriesSlider } from '../AccessoriesSlider';
+import { PurchasePanel } from '../Shared/PurchasePanel';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
-import { AccessoryPurchasePanel } from './AccessoryPurchasePanel';
+// import { AccessoryPurchasePanel } from './AccessoryPurchasePanel';
 
 export const AccessoryDetails = ({ accessories }) => {
   const navigate = useNavigate();
@@ -130,8 +131,9 @@ export const AccessoryDetails = ({ accessories }) => {
               className="h-[464px] object-contain"
             />
           </div>
-          <AccessoryPurchasePanel
-            accessory={accessory}
+          <PurchasePanel
+            item={accessory}
+            itemType="accessory"
             selectedColor={selectedColor}
             selectedCapacity={selectedCapacity}
             handleColorChange={handleColorChange}

@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
 import { ModelsSlider } from '../ModelsSlider';
+import { PurchasePanel } from '../Shared/PurchasePanel';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
-import { PhonePurchasePanel } from './PhonePurchasePanel';
 
 export const PhoneDetails = ({ phones }) => {
   const navigate = useNavigate();
@@ -130,8 +130,9 @@ export const PhoneDetails = ({ phones }) => {
               className="h-[464px] object-contain"
             />
           </div>
-          <PhonePurchasePanel
-            phone={phone}
+          <PurchasePanel
+            item={phone}
+            itemType="phone"
             selectedColor={selectedColor}
             selectedCapacity={selectedCapacity}
             handleColorChange={handleColorChange}

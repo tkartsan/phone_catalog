@@ -3,32 +3,33 @@ import React from 'react';
 import { devicesColorNamesMap } from '../../global/constants';
 import { usePhoneStore } from '../../store';
 
-export const TabletPurchasePanel = ({
-  tablet,
+export const PurchasePanel = ({
+  item,
+  itemType,
   selectedColor,
   handleColorChange,
   selectedCapacity,
   handleCapacityChange,
 }) => {
   const { addToCart, removeFromCart, isInCart } = usePhoneStore();
-  const isTabletInCart = isInCart(tablet.id);
+  const isInCartState = isInCart(item.id);
 
   const handleCartAction = () => {
-    if (isTabletInCart) {
-      removeFromCart(tablet.id);
+    if (isInCartState) {
+      removeFromCart(item.id);
     } else {
-      addToCart(tablet);
+      addToCart(item);
     }
   };
 
   return (
     <div className="flex flex-col w-[400px] space-y-4">
-      <p className="text-right text-sm text-gray-500">ID: {tablet.numericId}</p>
+      <p className="text-right text-sm text-gray-500">ID: {item.numericId}</p>
 
       <div className="space-y-2">
         <p className="text-lg">Available colors</p>
         <div className="flex space-x-4">
-          {tablet.colorsAvailable.map((color, index) => (
+          {item.colorsAvailable.map((color, index) => (
             <button
               key={index}
               className={`w-8 h-8 rounded-full border-2 border-solid ${
@@ -45,7 +46,7 @@ export const TabletPurchasePanel = ({
       <div className="space-y-2">
         <p className="text-lg">Select capacity</p>
         <div className="flex space-x-4">
-          {tablet.capacityAvailable.map((capacity, index) => (
+          {item.capacityAvailable.map((capacity, index) => (
             <button
               key={index}
               className={`px-4 py-2 border border-solid text-sm ${
@@ -62,39 +63,53 @@ export const TabletPurchasePanel = ({
       </div>
       <div className="flex flex-col space-y-2">
         <div className="flex items-center gap-4">
-          <p className="text-3xl font-bold">${tablet.priceDiscount}</p>
+          <p className="text-3xl font-bold">${item.priceDiscount}</p>
           <p className="text-lg text-gray-500 line-through">
-            ${tablet.priceRegular}
+            ${item.priceRegular}
           </p>
         </div>
       </div>
       <button
         className={`h-[46px] px-4 py-3 transition duration-300 ${
-          isTabletInCart
+          isInCartState
             ? 'bg-white text-green-500 border-colorLightGrey border-solid'
             : 'bg-black text-white'
         }`}
         onClick={handleCartAction}
       >
-        {isTabletInCart ? 'Added to cart' : 'Add to cart'}
+        {isInCartState ? 'Added to cart' : 'Add to cart'}
       </button>
       <div className="flex flex-col space-y-2 mt-4">
-        <div className="flex justify-between">
-          <span className="text-gray-600">Screen</span>
-          <span className="text-black">{tablet.screen}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Resolution</span>
-          <span className="text-black">{tablet.resolution}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">Processor</span>
-          <span className="text-black">{tablet.processor}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-gray-600">RAM</span>
-          <span className="text-black">{tablet.ram}</span>
-        </div>
+        {item.screen && (
+          <div className="flex justify-between">
+            <span className="text-gray-600">Screen</span>
+            <span className="text-black">{item.screen}</span>
+          </div>
+        )}
+        {item.resolution && (
+          <div className="flex justify-between">
+            <span className="text-gray-600">Resolution</span>
+            <span className="text-black">{item.resolution}</span>
+          </div>
+        )}
+        {item.processor && (
+          <div className="flex justify-between">
+            <span className="text-gray-600">Processor</span>
+            <span className="text-black">{item.processor}</span>
+          </div>
+        )}
+        {item.ram && (
+          <div className="flex justify-between">
+            <span className="text-gray-600">RAM</span>
+            <span className="text-black">{item.ram}</span>
+          </div>
+        )}
+        {item.cell && (
+          <div className="flex justify-between">
+            <span className="text-gray-600">Cell</span>
+            <span className="text-black">{item.cell.join(', ')}</span>
+          </div>
+        )}
       </div>
     </div>
   );
