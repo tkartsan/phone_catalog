@@ -7,7 +7,6 @@ import { PurchasePanel } from '../Shared/PurchasePanel';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
-// import { AccessoryPurchasePanel } from './AccessoryPurchasePanel';
 
 export const AccessoryDetails = ({ accessories }) => {
   const navigate = useNavigate();
