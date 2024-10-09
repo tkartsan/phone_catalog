@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { tabletColorNamesMap } from '../../global/constants';
+import { devicesColorNamesMap } from '../../global/constants';
 import { usePhoneStore } from '../../store';
 
 export const TabletPurchasePanel = ({
@@ -35,7 +35,7 @@ export const TabletPurchasePanel = ({
                 selectedColor === color ? 'border-black' : 'border-gray-300'
               }`}
               style={{
-                backgroundColor: tabletColorNamesMap[color] || '#000000',
+                backgroundColor: devicesColorNamesMap[color] || '#000000',
               }}
               onClick={() => handleColorChange(color)}
             ></button>

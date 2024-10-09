@@ -1,4 +1,4 @@
-export const phoneColorNamesMap = {
+export const devicesColorNamesMap = {
   black: '#000000',
   white: '#FFFFFF',
   red: '#FF0000',
@@ -9,29 +9,9 @@ export const phoneColorNamesMap = {
   gold: '#FFD700',
   silver: '#C0C0C0',
   midnightgreen: '#4E5A49',
-  purple: '	#A020F0',
+  purple: '#A020F0',
   sierrablue: '#4545d1',
-};
-
-export const tabletColorNamesMap = {
-  black: '#000000',
-  white: '#FFFFFF',
-  red: '#FF0000',
-  yellow: '#FFFF00',
-  green: '#00FF00',
-  blue: '#0000FF',
-  rosegold: '#B76E79',
-  gold: '#FFD700',
-  silver: '#C0C0C0',
-  midnightgreen: '#4E5A49',
-  purple: '	#A020F0',
   spacegray: '#4B4B4B',
-};
-
-export const accessoryColorNamesMap = {
-  'space gray': '#4A4A4A',
-  silver: '#C0C0C0',
-  gold: '#FFD700',
-  red: '#FF0000',
-  blue: '#0000FF',
+  // 'space gray': '#4A4A4A',
+  coral: '#FF6F61',
 };

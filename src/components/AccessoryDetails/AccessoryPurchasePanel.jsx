@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { accessoryColorNamesMap } from '../../global/constants';
+import { devicesColorNamesMap } from '../../global/constants';
 import { usePhoneStore } from '../../store';
 
 export const AccessoryPurchasePanel = ({
@@ -37,7 +37,7 @@ export const AccessoryPurchasePanel = ({
                 selectedColor === color ? 'border-black' : 'border-gray-300'
               }`}
               style={{
-                backgroundColor: accessoryColorNamesMap[color] || '#000000',
+                backgroundColor: devicesColorNamesMap[color] || '#000000',
               }}
               onClick={() => handleColorChange(color)}
             ></button>
