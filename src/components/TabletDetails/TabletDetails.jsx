@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
+import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
 import { TabletsSlider } from './../TabletsSlider';
-import { RenderTabletSpecs } from './RenderTabletSpecs';
 import { TabletPurchasePanel } from './TabletPurchasePanel';
 
 export const TabletDetails = ({ tablets }) => {
@@ -140,7 +140,7 @@ export const TabletDetails = ({ tablets }) => {
         </div>
         <div className="flex gap-10 mt-6">
           {renderDescription()}
-          <RenderTabletSpecs tablet={tablet} />
+          <RenderSpecs item={tablet} itemType="tablet" />
         </div>
         {!!tablets.length ? (
           <div className="mt-8">

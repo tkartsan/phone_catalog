@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
 import { ModelsSlider } from '../ModelsSlider';
+import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
 import { PhonePurchasePanel } from './PhonePurchasePanel';
-import { RenderPhoneSpecs } from './RenderPhoneSpecs';
 
 export const PhoneDetails = ({ phones }) => {
   const navigate = useNavigate();
@@ -140,7 +140,7 @@ export const PhoneDetails = ({ phones }) => {
         </div>
         <div className="flex gap-10 mt-6">
           {renderDescription()}
-          <RenderPhoneSpecs phone={phone} />
+          <RenderSpecs item={phone} itemType="phone" />
         </div>
         {!!phones.length ? (
           <div className="mt-8">

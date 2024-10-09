@@ -3,10 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
 import { AccessoriesSlider } from '../AccessoriesSlider';
+import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
 import { AccessoryPurchasePanel } from './AccessoryPurchasePanel';
-import { RenderAccessorySpecs } from './RenderAccessorySpecs';
 
 export const AccessoryDetails = ({ accessories }) => {
   const navigate = useNavigate();
@@ -140,7 +140,7 @@ export const AccessoryDetails = ({ accessories }) => {
         </div>
         <div className="flex gap-10 mt-6">
           {renderDescription()}
-          <RenderAccessorySpecs accessory={accessory} />
+          <RenderSpecs item={accessory} itemType="accessory" />
         </div>
         {!!accessories.length ? (
           <div className="mt-8">

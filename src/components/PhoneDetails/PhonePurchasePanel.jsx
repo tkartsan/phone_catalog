@@ -10,13 +10,10 @@ export const PhonePurchasePanel = ({
   selectedCapacity,
   handleCapacityChange,
 }) => {
-  // Import methods from the store
   const { addToCart, removeFromCart, isInCart } = usePhoneStore();
 
-  // Check if the phone is already in the cart
   const isPhoneInCart = isInCart(phone.id);
 
-  // Handle the add/remove from cart logic
   const handleCartAction = () => {
     if (isPhoneInCart) {
       removeFromCart(phone.id);
