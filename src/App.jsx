@@ -15,9 +15,7 @@ import { PhoneDetails } from './components/PhoneDetails';
 import { TabletDetails } from './components/TabletDetails';
 import { Tablets } from './components/Tablets';
 import { useFetch } from './hooks/useFetch';
-import { getAccessoryWithNumericId } from './utils/getAccessoryWithNumericId';
-import { getPhonesWithNumericId } from './utils/getPhonesWithNumericId';
-import { getTabletsWithNumericId } from './utils/getTabletsWithNumericId';
+import { getItemsWithNumericId } from './utils/getItemsWithNumericId';
 
 function App() {
   const { data: phonesData } = useFetch('/api/phones.json');
@@ -50,7 +48,7 @@ function App() {
             path="/tablets/:id"
             element={
               <TabletDetails
-                tablets={getTabletsWithNumericId(tabletsData, productsData)}
+                tablets={getItemsWithNumericId(tabletsData, productsData)}
               />
             }
           />
@@ -62,7 +60,7 @@ function App() {
             path="/accessories/:id"
             element={
               <AccessoryDetails
-                accessories={getAccessoryWithNumericId(
+                accessories={getItemsWithNumericId(
                   accessoriesData,
                   productsData,
                 )}
@@ -73,7 +71,7 @@ function App() {
             path="/phones/:id"
             element={
               <PhoneDetails
-                phones={getPhonesWithNumericId(phonesData, productsData)}
+                phones={getItemsWithNumericId(phonesData, productsData)}
               />
             }
           />
