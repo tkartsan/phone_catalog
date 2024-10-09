@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { Pagination } from '../Pagination';
-import { TabletCard } from '../TabletCard';
+import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Tablets = ({ tablets }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -100,7 +100,12 @@ export const Tablets = ({ tablets }) => {
 
       <div className="phone-grid">
         {currentTablets.map((tablet) => (
-          <TabletCard key={tablet.id} tablet={tablet} isShowDiscount={true} />
+          <DeviceCard
+            key={tablet.id}
+            item={tablet}
+            itemType="tablets"
+            isShowDiscount={true}
+          />
         ))}
       </div>
 

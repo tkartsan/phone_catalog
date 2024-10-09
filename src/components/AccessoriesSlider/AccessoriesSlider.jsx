@@ -7,7 +7,7 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
-import { AccessoryCard } from '../AccessoryCard';
+import { DeviceCard } from '../Shared/DeviceCard';
 
 export const AccessoriesSlider = ({
   accessories,
@@ -42,8 +42,9 @@ export const AccessoriesSlider = ({
       >
         {accessories.map((accessory) => (
           <SwiperSlide key={accessory.id}>
-            <AccessoryCard
-              accessory={accessory}
+            <DeviceCard
+              item={accessory}
+              itemType="accessories"
               isShowDiscount={isShowDiscount}
             />
           </SwiperSlide>

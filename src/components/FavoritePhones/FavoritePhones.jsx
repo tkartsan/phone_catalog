@@ -2,7 +2,8 @@ import React from 'react';
 
 import { usePhoneStore } from '../../store';
 import { Breadcrumb } from '../Breadcrumb';
-import { PhoneCard } from '../PhoneCard';
+import { DeviceCard } from '../Shared/DeviceCard';
+// import { PhoneCard } from '../PhoneCard';
 
 export const FavoritePhones = () => {
   const { favorites } = usePhoneStore();
@@ -26,7 +27,12 @@ export const FavoritePhones = () => {
       <p className="subtitle">{phoneCount} models</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {favorites.map((phone) => (
-          <PhoneCard key={phone.id} phone={phone} isShowDiscount={false} />
+          <DeviceCard
+            key={phone.id}
+            item={phone}
+            itemType="phones"
+            isShowDiscount={false}
+          />
         ))}
       </div>
     </div>

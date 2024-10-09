@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { Pagination } from '../Pagination';
-import { PhoneCard } from '../PhoneCard';
+import { DeviceCard } from '../Shared/DeviceCard';
 
 export const MobilePhones = ({ phones }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -96,7 +96,12 @@ export const MobilePhones = ({ phones }) => {
 
       <div className="phone-grid">
         {currentPhones.map((phone) => (
-          <PhoneCard key={phone.id} phone={phone} isShowDiscount={true} />
+          <DeviceCard
+            key={phone.id}
+            item={phone}
+            itemType="phones"
+            isShowDiscount={true}
+          />
         ))}
       </div>
 

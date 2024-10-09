@@ -2,9 +2,9 @@ import './Accessories.css';
 
 import React, { useState } from 'react';
 
-import { AccessoryCard } from '../AccessoryCard';
 import { Breadcrumb } from '../Breadcrumb';
 import { Pagination } from '../Pagination';
+import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Accessories = ({ accessories }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -106,9 +106,10 @@ export const Accessories = ({ accessories }) => {
 
       <div className="accessory-grid">
         {currentAccessories.map((accessory) => (
-          <AccessoryCard
+          <DeviceCard
             key={accessory.id}
-            accessory={accessory}
+            item={accessory}
+            itemType="accessories"
             isShowDiscount={true}
           />
         ))}

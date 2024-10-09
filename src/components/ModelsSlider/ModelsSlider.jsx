@@ -7,7 +7,7 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
-import { PhoneCard } from '../PhoneCard';
+import { DeviceCard } from '../Shared/DeviceCard';
 
 export const ModelsSlider = ({
   phones,
@@ -42,7 +42,11 @@ export const ModelsSlider = ({
       >
         {phones.map((phone) => (
           <SwiperSlide key={phone.id}>
-            <PhoneCard phone={phone} isShowDiscount={isShowDiscount} />
+            <DeviceCard
+              item={phone}
+              itemType="phones"
+              isShowDiscount={isShowDiscount}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
