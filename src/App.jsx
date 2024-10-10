@@ -12,6 +12,7 @@ import { Header } from './components/Header';
 import { HomePage } from './components/HomePage';
 import { MobilePhones } from './components/MobilePhones';
 import { PhoneDetails } from './components/PhoneDetails';
+import { ScrollToTop } from './components/ScrollToTop';
 import { TabletDetails } from './components/TabletDetails';
 import { Tablets } from './components/Tablets';
 import { useFetch } from './hooks/useFetch';
@@ -27,6 +28,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex flex-col gap-8 pt-[100px]">
+        <ScrollToTop />
         <Routes>
           <Route
             path="/"
