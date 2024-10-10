@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
+import { DescriptionPanel } from '../Shared/DescriptionPanel';
 import { DeviceSlider } from '../Shared/DeviceSlider';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
@@ -68,26 +69,26 @@ export const TabletDetails = ({ tablets }) => {
     setSelectedImage(image);
   };
 
-  const renderDescription = () => {
-    return (
-      <div className="w-[559px]">
-        <h2 className="text-2xl font-bold mb-4">About</h2>
-        <div className="h-[1px] bg-gray-300 w-full mb-6"></div>
-        {tablet.description.map((section, index) => (
-          <div key={index} className="mb-8">
-            <h3 className="text-xl font-semibold mb-3">{section.title}</h3>
-            <div className="text-base text-gray-700 leading-6">
-              {section.text.map((paragraph, idx) => (
-                <p key={idx} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  };
+  // const renderDescription = () => {
+  //   return (
+  //     <div className="w-[559px]">
+  //       <h2 className="text-2xl font-bold mb-4">About</h2>
+  //       <div className="h-[1px] bg-gray-300 w-full mb-6"></div>
+  //       {tablet.description.map((section, index) => (
+  //         <div key={index} className="mb-8">
+  //           <h3 className="text-xl font-semibold mb-3">{section.title}</h3>
+  //           <div className="text-base text-gray-700 leading-6">
+  //             {section.text.map((paragraph, idx) => (
+  //               <p key={idx} className="mb-4">
+  //                 {paragraph}
+  //               </p>
+  //             ))}
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   );
+  // };
 
   return (
     <div className="w-full flex justify-center">
@@ -140,7 +141,7 @@ export const TabletDetails = ({ tablets }) => {
           />
         </div>
         <div className="flex gap-10 mt-6">
-          {renderDescription()}
+          <DescriptionPanel description={tablet.description} />
           <RenderSpecs item={tablet} itemType="tablet" />
         </div>
         {!!tablets.length ? (
