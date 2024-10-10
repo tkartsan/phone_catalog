@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
-import { ModelsSlider } from '../ModelsSlider';
+import { DeviceSlider } from '../Shared/DeviceSlider';
 import { PurchasePanel } from '../Shared/PurchasePanel';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
@@ -145,10 +145,12 @@ export const PhoneDetails = ({ phones }) => {
         </div>
         {!!phones.length ? (
           <div className="mt-8">
-            <ModelsSlider
-              phones={phones.slice(0, 10)}
+            <DeviceSlider
+              items={phones.slice(0, 10)}
               title="You may also like"
+              itemType="phones"
               isShowDiscount={true}
+              sliderId="phones-slider"
             />
           </div>
         ) : (

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '../../assets';
+import { DeviceSlider } from '../Shared/DeviceSlider';
 import { RenderSpecs } from '../Shared/RenderSpecs';
 
 import { Breadcrumb } from './../Breadcrumb';
 import { PurchasePanel } from './../Shared/PurchasePanel';
-import { TabletsSlider } from './../TabletsSlider';
 
 export const TabletDetails = ({ tablets }) => {
   const navigate = useNavigate();
@@ -145,10 +145,12 @@ export const TabletDetails = ({ tablets }) => {
         </div>
         {!!tablets.length ? (
           <div className="mt-8">
-            <TabletsSlider
-              tablets={tablets.slice(0, 10)}
+            <DeviceSlider
+              items={tablets.slice(0, 10)}
               title="You may also like"
+              itemType="tablets"
               isShowDiscount={true}
+              sliderId="tablets-slider"
             />
           </div>
         ) : (

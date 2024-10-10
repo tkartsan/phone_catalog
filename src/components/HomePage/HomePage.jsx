@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CategoriesPick } from '../CategoriesPick';
 import { CoverSlider } from '../CoverSlider';
-import { ModelsSlider } from '../ModelsSlider';
+import { DeviceSlider } from '../Shared/DeviceSlider';
 
 import { getMostRecentPhones } from './../../utils/getMostRecentPhones';
 import { getTopDiscountedPhones } from './../../utils/getTopDiscountedPhones';
@@ -17,9 +17,10 @@ export const HomePage = ({
     <>
       <CoverSlider />
       {phonesData && productsData ? (
-        <ModelsSlider
-          phones={getMostRecentPhones(phonesData, productsData)}
+        <DeviceSlider
+          items={getMostRecentPhones(phonesData, productsData)}
           title="Brand new models"
+          itemType="phones"
           isShowDiscount={false}
           sliderId="brand-new-models"
         />
@@ -32,9 +33,10 @@ export const HomePage = ({
         accessories={accessoriesData}
       />
       {phonesData && productsData ? (
-        <ModelsSlider
-          phones={getTopDiscountedPhones(phonesData)}
+        <DeviceSlider
+          items={getTopDiscountedPhones(phonesData)}
           title="Hot prices"
+          itemType="phones"
           isShowDiscount={true}
           sliderId="hot-prices"
         />

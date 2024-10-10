@@ -1,4 +1,4 @@
-import './ModelsSlider.css';
+import './DeviceSlider.css';
 
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
@@ -9,9 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../assets';
 import { DeviceCard } from '../Shared/DeviceCard';
 
-export const ModelsSlider = ({
-  phones,
+export const DeviceSlider = ({
+  items,
   title,
+  itemType,
   isShowDiscount,
   sliderId = '',
 }) => {
@@ -40,11 +41,11 @@ export const ModelsSlider = ({
           prevEl: `.${prevButtonClass}`,
         }}
       >
-        {phones.map((phone) => (
-          <SwiperSlide key={phone.id}>
+        {items.map((item) => (
+          <SwiperSlide key={item.id}>
             <DeviceCard
-              item={phone}
-              itemType="phones"
+              item={item}
+              itemType={itemType}
               isShowDiscount={isShowDiscount}
             />
           </SwiperSlide>
