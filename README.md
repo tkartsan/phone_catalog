@@ -1,4 +1,4 @@
-`# Nice Gadgets Store
+## Nice Gadgets Store
 
 Welcome to **Nice Gadgets Store**, a fully responsive e-commerce platform developed with **React**. This platform allows users to browse various categories of gadgets such as **mobile phones**, **tablets**, and **accessories**. It also includes advanced features such as custom sliders, state management with **Zustand**, pagination, and more.
 
