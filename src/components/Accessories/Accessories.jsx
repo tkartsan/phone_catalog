@@ -74,8 +74,8 @@ export const Accessories = ({ accessories }) => {
           selectedOption={sortOptions.find((opt) => opt.value === sortOption)}
           setSelectedOption={(option) => setSortOption(option.value)}
           label="Sort by"
-          width="186px"
-          height="40px"
+          widthClass="186px"
+          heightClass="40px"
         />
 
         <CustomDropdown
@@ -89,8 +89,8 @@ export const Accessories = ({ accessories }) => {
             )
           }
           label="Items on page"
-          width="128px"
-          height="40px"
+          widthClass="128px"
+          heightClass="40px"
         />
       </div>
 

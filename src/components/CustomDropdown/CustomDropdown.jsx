@@ -1,6 +1,8 @@
+import './CustomDropdown.css';
+
 import React, { useRef, useState } from 'react';
 
-import { ArrowLeftIcon } from '../../assets'; // Assuming this is your only arrow icon "<"
+import { ArrowLeftIcon } from '../../assets';
 import { useClickOutside } from '../../hooks/useClickOutside';
 
 export const CustomDropdown = ({
@@ -8,8 +10,8 @@ export const CustomDropdown = ({
   selectedOption,
   setSelectedOption,
   label,
-  width,
-  height,
+  widthClass, // Replace inline width with a Tailwind or custom width class
+  heightClass, // Replace inline height with a Tailwind or custom height class
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -28,27 +30,21 @@ export const CustomDropdown = ({
   };
 
   return (
-    <div className="relative" ref={dropdownRef} style={{ width }}>
+    <div className={`custom-dropdown relative ${widthClass}`} ref={dropdownRef}>
       <div className="font-semibold mb-1 text-colorGrey">{label}</div>
       <div
-        className="border-solid border-colorGrey p-2 cursor-pointer flex justify-between items-center"
-        style={{ width, height }}
+        className={`dropdown-toggle border-solid border-colorGrey p-2 cursor-pointer flex justify-between items-center ${heightClass}`}
         onClick={toggleDropdown}
       >
         <span>{selectedOption ? selectedOption.label : 'Default sorting'}</span>
         <span
-          style={{
-            transform: isOpen ? 'rotate(90deg)' : 'rotate(-90deg)',
-            width: '16px',
-            height: '16px',
-            display: 'inline-block',
-          }}
+          className={`arrow-icon ${isOpen ? 'rotate-open' : 'rotate-close'}`}
         >
           <ArrowLeftIcon />
         </span>
       </div>
       {isOpen && (
-        <div className="absolute mt-2 w-full border border-colorGrey bg-white shadow-lg z-10">
+        <div className="dropdown-menu absolute mt-2 w-full border border-colorGrey bg-white shadow-lg z-10">
           {options.map((option) => (
             <div
               key={option.value}

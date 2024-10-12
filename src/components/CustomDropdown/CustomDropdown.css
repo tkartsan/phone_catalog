@@ -1,0 +1,25 @@
+.dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.rotate-open {
+  transform: rotate(90deg);
+}
+
+.rotate-close {
+  transform: rotate(-90deg);
+}
+
+.dropdown-menu {
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
