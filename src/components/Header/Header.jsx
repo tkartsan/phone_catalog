@@ -14,7 +14,9 @@ export const Header = () => {
     { to: '/accessories', label: 'Accessories' },
   ];
 
-  const { totalItemsInCart } = usePhoneStore();
+  const { totalItemsInCart, favorites } = usePhoneStore();
+  const favoriteCount = favorites.length;
+  const cartCount = totalItemsInCart();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,11 +30,6 @@ export const Header = () => {
     location.pathname === path
       ? 'hover:text-colorGrey w-[86px] h-[86px] nav-active relative'
       : 'hover:text-colorGrey w-[86px] h-[86px] relative';
-
-  const { favorites } = usePhoneStore();
-  const { cart } = usePhoneStore();
-  const favoriteCount = favorites.length;
-  const cartCount = cart.length;
 
   return (
     <header className="w-full bg-colorBgBase h-[86px] text-colorTextBase fixed top-0 z-40">
@@ -65,7 +62,9 @@ export const Header = () => {
           >
             <HeartIcon className="h-6 w-6" />
             {favoriteCount > 0 && (
-              <span className="favorites-count">{favoriteCount}</span>
+              <span className="absolute top-4 right-4 mt-1 mr-1 w-5 h-5 text-xs leading-5 text-white bg-red-500 rounded-full flex items-center justify-center">
+                {favoriteCount}
+              </span>
             )}
           </button>
           <div className="w-[1px] h-[86px] bg-colorBorderGrey"></div>
@@ -74,10 +73,10 @@ export const Header = () => {
             className={buttonClass('/cart')}
             onClick={() => navigate('/cart')}
           >
-            <HomeIcon className="h-6 w-6 " />
-            {favoriteCount > 0 && (
-              <span className="favorites-count heart-icon">
-                {totalItemsInCart()}
+            <HomeIcon className="h-6 w-6" />
+            {cartCount > 0 && (
+              <span className="absolute top-4 right-4 mt-1 mr-1 w-5 h-5 text-xs leading-5 text-white bg-red-500 rounded-full flex items-center justify-center">
+                {cartCount}
               </span>
             )}
           </button>
