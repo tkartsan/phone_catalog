@@ -1,3 +1,5 @@
+import './CategoriesPick.css';
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,21 +17,21 @@ export const CategoriesPick = ({ phones, tablets, accessories }) => {
           title: 'Mobile phones',
           image: phonecover,
           models: `${phones.length} models`,
-          bgColor: '#6D6474',
+          className: 'phonesBgColor',
           link: '/phones',
         },
         {
           title: 'Tablets',
           image: tabletcover,
           models: `${tablets.length} models`,
-          bgColor: '#808080',
+          className: 'tabletsBgColor',
           link: '/tablets',
         },
         {
           title: 'Accessories',
           image: accessoriescover,
           models: `${accessories.length} models`,
-          bgColor: 'rgb(50%, 30%, 20%)',
+          className: 'accessoriesBgColor',
           link: '/accessories',
         },
       ];
@@ -47,8 +49,7 @@ export const CategoriesPick = ({ phones, tablets, accessories }) => {
             <div key={index} className="w-[368px]">
               <Link to={category.link}>
                 <div
-                  className="w-[368px] h-[368px] relative transform transition-transform duration-300 hover:scale-105"
-                  style={{ backgroundColor: category.bgColor }}
+                  className={`w-[368px] h-[368px] relative transform transition-transform duration-300 hover:scale-105 ${category.className}`}
                 >
                   <img
                     src={category.image}
