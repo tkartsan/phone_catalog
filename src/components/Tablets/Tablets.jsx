@@ -3,7 +3,7 @@ import './Tablets.css';
 import React, { useState } from 'react';
 
 import { Breadcrumb } from '../Breadcrumb';
-import { Pagination } from '../Pagination';
+import { CustomDropdown } from '../CustomDropdown';
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Tablets = ({ tablets }) => {
@@ -11,24 +11,27 @@ export const Tablets = ({ tablets }) => {
   const [tabletsPerPage, setTabletsPerPage] = useState(16);
   const [sortOption, setSortOption] = useState('');
 
+  const sortOptions = [
+    { value: '', label: '--' },
+    { value: 'lowestPrice', label: 'Lowest price first' },
+    { value: 'highestPrice', label: 'Highest price first' },
+    { value: 'biggestDiscount', label: 'Biggest discount' },
+  ];
+
+  const itemsPerPageOptions = [
+    { value: 12, label: '12' },
+    { value: 16, label: '16' },
+    { value: 24, label: '24' },
+    { value: 48, label: '48' },
+    { value: 'ALL', label: 'ALL' },
+  ];
+
   if (!tablets) {
     return null;
   }
 
   const handlePageChange = (data) => {
     setCurrentPage(data.selected);
-  };
-
-  const handleItemsPerPageChange = (event) => {
-    const value = event.target.value;
-
-    setTabletsPerPage(value === 'ALL' ? tablets.length : parseInt(value, 10));
-    setCurrentPage(0);
-  };
-
-  const handleSortOptionChange = (event) => {
-    setSortOption(event.target.value);
-    setCurrentPage(0);
   };
 
   const sortedTablets = [...tablets].sort((a, b) => {
@@ -66,36 +69,29 @@ export const Tablets = ({ tablets }) => {
       <p className="subtitle">{tabletCount} models</p>
 
       <div className="flex gap-6 mb-8">
-        <div className="flex flex-col">
-          <div className="font-semibold mb-1 text-colorGrey">Sort by</div>
-          <select
-            id="sort-option"
-            value={sortOption}
-            onChange={handleSortOptionChange}
-            className="flex border-solid border-colorGrey p-2"
-          >
-            <option value="">--</option>
-            <option value="lowestPrice">Lowest price first</option>
-            <option value="highestPrice">Highest price first</option>
-            <option value="biggestDiscount">Biggest discount</option>
-          </select>
-        </div>
+        <CustomDropdown
+          options={sortOptions}
+          selectedOption={sortOptions.find((opt) => opt.value === sortOption)}
+          setSelectedOption={(option) => setSortOption(option.value)}
+          label="Sort by"
+          width="186px"
+          height="40px"
+        />
 
-        <div className="flex flex-col">
-          <div className="font-semibold mb-1 text-colorGrey">Items on page</div>
-          <select
-            id="items-per-page"
-            value={tabletsPerPage === tablets.length ? 'ALL' : tabletsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="flex border-solid border-colorGrey p-2"
-          >
-            <option value="12">12</option>
-            <option value="16">16</option>
-            <option value="24">24</option>
-            <option value="48">48</option>
-            <option value="ALL">ALL</option>
-          </select>
-        </div>
+        <CustomDropdown
+          options={itemsPerPageOptions}
+          selectedOption={itemsPerPageOptions.find(
+            (opt) => opt.value === tabletsPerPage || opt.value === 'ALL',
+          )}
+          setSelectedOption={(option) =>
+            setTabletsPerPage(
+              option.value === 'ALL' ? tablets.length : option.value,
+            )
+          }
+          label="Items on page"
+          width="128px"
+          height="40px"
+        />
       </div>
 
       <div className="phone-grid">
@@ -108,13 +104,6 @@ export const Tablets = ({ tablets }) => {
           />
         ))}
       </div>
-
-      <Pagination
-        devices={tablets}
-        devicesPerPage={tabletsPerPage}
-        totalPages={totalPages}
-        handlePageChange={handlePageChange}
-      />
     </div>
   );
 };

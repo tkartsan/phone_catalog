@@ -1,16 +1,29 @@
 import './MobilePhones.css';
 
 import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
 
-import { Breadcrumb } from '../Breadcrumb';
-import { Pagination } from '../Pagination';
+import { CustomDropdown } from '../CustomDropdown';
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const MobilePhones = ({ phones }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [phonesPerPage, setPhonesPerPage] = useState(16);
   const [sortOption, setSortOption] = useState('');
+
+  const sortOptions = [
+    { value: '', label: '--' },
+    { value: 'lowestPrice', label: 'Lowest price first' },
+    { value: 'highestPrice', label: 'Highest price first' },
+    { value: 'biggestDiscount', label: 'Biggest discount' },
+  ];
+
+  const itemsPerPageOptions = [
+    { value: 12, label: '12' },
+    { value: 16, label: '16' },
+    { value: 24, label: '24' },
+    { value: 48, label: '48' },
+    { value: 'ALL', label: 'ALL' },
+  ];
 
   if (!phones) {
     return null;
@@ -57,11 +70,10 @@ export const MobilePhones = ({ phones }) => {
 
   return (
     <div className="container">
-      <Breadcrumb />
       <div className="title">Mobile Phones</div>
       <p className="subtitle">{phoneCount} models</p>
 
-      <div className="flex gap-6 mb-8">
+      {/* <div className="flex gap-6 mb-8">
         <div className="flex flex-col">
           <div className="font-semibold mb-1 text-colorGrey">Sort by</div>
           <select
@@ -92,6 +104,32 @@ export const MobilePhones = ({ phones }) => {
             <option value="ALL">ALL</option>
           </select>
         </div>
+      </div> */}
+
+      <div className="flex gap-6 mb-8">
+        <CustomDropdown
+          options={sortOptions}
+          selectedOption={sortOptions.find((opt) => opt.value === sortOption)}
+          setSelectedOption={(option) => setSortOption(option.value)}
+          label="Sort by"
+          width="186px"
+          height="40px"
+        />
+
+        <CustomDropdown
+          options={itemsPerPageOptions}
+          selectedOption={itemsPerPageOptions.find(
+            (opt) => opt.value === phonesPerPage || opt.value === 'ALL',
+          )}
+          setSelectedOption={(option) =>
+            setPhonesPerPage(
+              option.value === 'ALL' ? phones.length : option.value,
+            )
+          }
+          label="Items on page"
+          width="128px"
+          height="40px"
+        />
       </div>
 
       <div className="phone-grid">
@@ -104,13 +142,6 @@ export const MobilePhones = ({ phones }) => {
           />
         ))}
       </div>
-
-      <Pagination
-        devices={phones}
-        devicesPerPage={phonesPerPage}
-        totalPages={totalPages}
-        handlePageChange={handlePageChange}
-      />
     </div>
   );
 };
