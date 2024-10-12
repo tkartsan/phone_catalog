@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { ArrowLeftIcon } from '../../assets'; // Assuming this is your only arrow icon "<"
+import { useClickOutside } from '../../hooks/useClickOutside';
 
 export const CustomDropdown = ({
   options,
@@ -13,38 +14,28 @@ export const CustomDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  const closeDropdown = () => setIsOpen(false);
+
+  useClickOutside(dropdownRef, closeDropdown);
+
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
-    setIsOpen(false);
+    closeDropdown(); // Close the dropdown after selecting an option
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="relative" ref={dropdownRef} style={{ width }}>
       <div className="font-semibold mb-1 text-colorGrey">{label}</div>
       <div
         className="border-solid border-colorGrey p-2 cursor-pointer flex justify-between items-center"
-        style={{ width, height }} // todo: get rid of inline style
+        style={{ width, height }}
         onClick={toggleDropdown}
       >
-        <span>{selectedOption ? selectedOption.label : '--'}</span>
+        <span>{selectedOption ? selectedOption.label : 'Default sorting'}</span>
         <span
           style={{
             transform: isOpen ? 'rotate(90deg)' : 'rotate(-90deg)',
