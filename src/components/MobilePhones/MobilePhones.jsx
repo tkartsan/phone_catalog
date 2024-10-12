@@ -73,39 +73,6 @@ export const MobilePhones = ({ phones }) => {
       <div className="title">Mobile Phones</div>
       <p className="subtitle">{phoneCount} models</p>
 
-      {/* <div className="flex gap-6 mb-8">
-        <div className="flex flex-col">
-          <div className="font-semibold mb-1 text-colorGrey">Sort by</div>
-          <select
-            id="sort-option"
-            value={sortOption}
-            onChange={handleSortOptionChange}
-            className="flex border-solid border-colorGrey p-2"
-          >
-            <option value="">--</option>
-            <option value="lowestPrice">Lowest price first</option>
-            <option value="highestPrice">Highest price first</option>
-            <option value="biggestDiscount">Biggest discount</option>
-          </select>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="font-semibold mb-1 text-colorGrey">Items on page</div>
-          <select
-            id="items-per-page"
-            value={phonesPerPage === phones.length ? 'ALL' : phonesPerPage}
-            onChange={handleItemsPerPageChange}
-            className="flex border-solid border-colorGrey p-2"
-          >
-            <option value="12">12</option>
-            <option value="16">16</option>
-            <option value="24">24</option>
-            <option value="48">48</option>
-            <option value="ALL">ALL</option>
-          </select>
-        </div>
-      </div> */}
-
       <div className="flex gap-6 mb-8">
         <CustomDropdown
           options={sortOptions}
