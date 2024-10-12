@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { ArrowLeftIcon } from '../../assets'; // Assuming this is your only arrow icon "<"
 
@@ -11,6 +11,7 @@ export const CustomDropdown = ({
   height,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,8 +22,22 @@ export const CustomDropdown = ({
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative" style={{ width }}>
+    <div className="relative" ref={dropdownRef} style={{ width }}>
       <div className="font-semibold mb-1 text-colorGrey">{label}</div>
       <div
         className="border-solid border-colorGrey p-2 cursor-pointer flex justify-between items-center"
