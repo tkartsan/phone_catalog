@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { CustomDropdown } from '../CustomDropdown';
+import { Pagination } from '../Pagination';
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Tablets = ({ tablets }) => {
@@ -12,7 +13,7 @@ export const Tablets = ({ tablets }) => {
   const [sortOption, setSortOption] = useState('');
 
   const sortOptions = [
-    { value: '', label: '--' },
+    { value: '', label: 'Default sorting' },
     { value: 'lowestPrice', label: 'Lowest price first' },
     { value: 'highestPrice', label: 'Highest price first' },
     { value: 'biggestDiscount', label: 'Biggest discount' },
@@ -94,7 +95,7 @@ export const Tablets = ({ tablets }) => {
         />
       </div>
 
-      <div className="phone-grid">
+      <div className="tablet-grid">
         {currentTablets.map((tablet) => (
           <DeviceCard
             key={tablet.id}
@@ -104,6 +105,13 @@ export const Tablets = ({ tablets }) => {
           />
         ))}
       </div>
+
+      <Pagination
+        devices={tablets}
+        devicesPerPage={tabletsPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };

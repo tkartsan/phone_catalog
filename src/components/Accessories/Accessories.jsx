@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { CustomDropdown } from '../CustomDropdown';
+import { Pagination } from '../Pagination'; // Import your Pagination component
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Accessories = ({ accessories }) => {
@@ -12,7 +13,7 @@ export const Accessories = ({ accessories }) => {
   const [sortOption, setSortOption] = useState('');
 
   const sortOptions = [
-    { value: '', label: '--' },
+    { value: '', label: 'Default sorting' },
     { value: 'lowestPrice', label: 'Lowest price first' },
     { value: 'highestPrice', label: 'Highest price first' },
     { value: 'biggestDiscount', label: 'Biggest discount' },
@@ -104,6 +105,13 @@ export const Accessories = ({ accessories }) => {
           />
         ))}
       </div>
+
+      <Pagination
+        devices={accessories}
+        devicesPerPage={accessoriesPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };

@@ -2,7 +2,9 @@ import './MobilePhones.css';
 
 import React, { useState } from 'react';
 
+import { Breadcrumb } from '../Breadcrumb';
 import { CustomDropdown } from '../CustomDropdown';
+import { Pagination } from '../Pagination';
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const MobilePhones = ({ phones }) => {
@@ -11,7 +13,7 @@ export const MobilePhones = ({ phones }) => {
   const [sortOption, setSortOption] = useState('');
 
   const sortOptions = [
-    { value: '', label: '--' },
+    { value: '', label: 'Default sorting' },
     { value: 'lowestPrice', label: 'Lowest price first' },
     { value: 'highestPrice', label: 'Highest price first' },
     { value: 'biggestDiscount', label: 'Biggest discount' },
@@ -31,18 +33,6 @@ export const MobilePhones = ({ phones }) => {
 
   const handlePageChange = (data) => {
     setCurrentPage(data.selected);
-  };
-
-  const handleItemsPerPageChange = (event) => {
-    const value = event.target.value;
-
-    setPhonesPerPage(value === 'ALL' ? phones.length : parseInt(value, 10));
-    setCurrentPage(0);
-  };
-
-  const handleSortOptionChange = (event) => {
-    setSortOption(event.target.value);
-    setCurrentPage(0);
   };
 
   const sortedPhones = [...phones].sort((a, b) => {
@@ -70,6 +60,7 @@ export const MobilePhones = ({ phones }) => {
 
   return (
     <div className="container">
+      <Breadcrumb />
       <div className="title">Mobile Phones</div>
       <p className="subtitle">{phoneCount} models</p>
 
@@ -109,6 +100,13 @@ export const MobilePhones = ({ phones }) => {
           />
         ))}
       </div>
+
+      <Pagination
+        devices={phones}
+        devicesPerPage={phonesPerPage}
+        totalPages={totalPages}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
