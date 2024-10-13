@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { usePhoneStore } from '../../store';
+import { useCartStore } from '../../store';
 
 export const CartPage = () => {
   const {
@@ -9,7 +9,7 @@ export const CartPage = () => {
     updateCartQuantity,
     totalItemsInCart,
     clearCart,
-  } = usePhoneStore();
+  } = useCartStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalPrice = cart.reduce(

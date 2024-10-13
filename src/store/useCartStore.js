@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export const usePhoneStore = create(
+export const useCartStore = create(
   persist(
     (set, get) => ({
       cart: [],
@@ -29,25 +29,15 @@ export const usePhoneStore = create(
 
           return { cart: updatedCart };
         }),
-      addFavorite: (phone) =>
-        set((state) => ({
-          favorites: [...state.favorites, phone],
-        })),
-      removeFavorite: (phoneId) =>
-        set((state) => ({
-          favorites: state.favorites.filter((phone) => phone.id !== phoneId),
-        })),
       totalItemsInCart: () =>
         get().cart.reduce((acc, purchase) => acc + (purchase.quantity || 1), 0),
       clearCart: () =>
         set(() => ({
           cart: [],
         })),
-      isFavorite: (phoneId) =>
-        get().favorites.some((phone) => phone.id === phoneId),
     }),
     {
-      name: 'phone-store',
+      name: 'cart-store',
     },
   ),
 );

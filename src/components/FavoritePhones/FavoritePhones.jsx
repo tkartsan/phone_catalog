@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { usePhoneStore } from '../../store';
+import { useFavoritesStore } from '../../store';
 import { Breadcrumb } from '../Breadcrumb';
 import { DeviceCard } from '../Shared/DeviceCard';
-// import { PhoneCard } from '../PhoneCard';
 
 export const FavoritePhones = () => {
-  const { favorites } = usePhoneStore();
+  const { favorites } = useFavoritesStore();
 
   if (!favorites || favorites.length === 0) {
     return (
@@ -18,13 +17,13 @@ export const FavoritePhones = () => {
     );
   }
 
-  const phoneCount = favorites.length;
+  const deviceCount = favorites.length;
 
   return (
     <div className="container">
       <Breadcrumb />
       <div className="title">Favourites</div>
-      <p className="subtitle">{phoneCount} models</p>
+      <p className="subtitle">{deviceCount} models</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {favorites.map((phone) => (
           <DeviceCard

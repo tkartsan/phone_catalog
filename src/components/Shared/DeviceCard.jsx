@@ -2,17 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { HeartIcon, RedHeartIcon } from '../../assets';
-import { usePhoneStore } from '../../store';
+import { useCartStore } from '../../store/useCartStore';
+import { useFavoritesStore } from '../../store/useFavoritesStore';
 
 export const DeviceCard = ({ item, itemType, isShowDiscount }) => {
-  const {
-    addToCart,
-    removeFromCart,
-    isInCart,
-    isFavorite,
-    addFavorite,
-    removeFavorite,
-  } = usePhoneStore();
+  // Extract cart-related actions and state
+  const { addToCart, removeFromCart, isInCart } = useCartStore();
+
+  // Extract favorites-related actions and state
+  const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
 
   const handleToggleFavorite = () => {
     if (isFavorite(item.id)) {

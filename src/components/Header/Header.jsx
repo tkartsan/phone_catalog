@@ -4,7 +4,8 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
-import { usePhoneStore } from '../../store';
+import { useCartStore } from '../../store/useCartStore'; // Cart store
+import { useFavoritesStore } from '../../store/useFavoritesStore'; // Favorites store
 
 export const Header = () => {
   const navLinks = [
@@ -14,7 +15,9 @@ export const Header = () => {
     { to: '/accessories', label: 'Accessories' },
   ];
 
-  const { totalItemsInCart, favorites } = usePhoneStore();
+  const { totalItemsInCart } = useCartStore();
+  const { favorites } = useFavoritesStore(); // Accessing the correct store for favorites
+
   const favoriteCount = favorites.length;
   const cartCount = totalItemsInCart();
 

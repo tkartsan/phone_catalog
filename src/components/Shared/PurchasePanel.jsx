@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { devicesColorNamesMap } from '../../global/constants';
-import { usePhoneStore } from '../../store';
+import { useCartStore } from '../../store';
 
 export const PurchasePanel = ({
   item,
@@ -11,7 +11,7 @@ export const PurchasePanel = ({
   selectedCapacity,
   handleCapacityChange,
 }) => {
-  const { addToCart, removeFromCart, isInCart } = usePhoneStore();
+  const { addToCart, removeFromCart, isInCart } = useCartStore();
   const isInCartState = isInCart(item.id);
 
   const handleCartAction = () => {
