@@ -75,7 +75,7 @@ export const Accessories = ({ accessories }) => {
           selectedOption={sortOptions.find((opt) => opt.value === sortOption)}
           setSelectedOption={(option) => setSortOption(option.value)}
           label="Sort by"
-          widthClass="186px"
+          isNarrowWidth={false}
           heightClass="40px"
         />
 
@@ -90,7 +90,7 @@ export const Accessories = ({ accessories }) => {
             )
           }
           label="Items on page"
-          widthClass="128px"
+          isNarrowWidth={true}
           heightClass="40px"
         />
       </div>
