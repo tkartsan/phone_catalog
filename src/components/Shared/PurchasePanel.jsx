@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { devicesColorNamesMap } from '../../global/constants';
-import { useCartStore } from '../../store';
+import { useCartStore, useCompareStore } from '../../store';
+import { CompareModal } from '../CompareModal'; // Import the modal component
 
 export const PurchasePanel = ({
   item,
@@ -12,7 +13,9 @@ export const PurchasePanel = ({
   handleCapacityChange,
 }) => {
   const { addToCart, removeFromCart, isInCart } = useCartStore();
+  const { addDeviceToCompare } = useCompareStore();
   const isInCartState = isInCart(item.id);
+  const [isCompareModalOpen, setCompareModalOpen] = useState(false); // Modal state
 
   const handleCartAction = () => {
     if (isInCartState) {
@@ -22,8 +25,13 @@ export const PurchasePanel = ({
     }
   };
 
+  const handleCompareClick = () => {
+    addDeviceToCompare(item);
+    setCompareModalOpen(true); // Open the modal
+  };
+
   return (
-    <div className="flex flex-col w-[400px] space-y-4">
+    <div className="flex flex-col w-[400px] space-y-4 relative">
       <p className="text-right text-sm text-gray-500">ID: {item.numericId}</p>
 
       <div className="space-y-2">
@@ -43,6 +51,7 @@ export const PurchasePanel = ({
           ))}
         </div>
       </div>
+
       <div className="space-y-2">
         <p className="text-lg">Select capacity</p>
         <div className="flex space-x-4">
@@ -61,6 +70,7 @@ export const PurchasePanel = ({
           ))}
         </div>
       </div>
+
       <div className="flex flex-col space-y-2">
         <div className="flex items-center gap-4">
           <p className="text-3xl font-bold">${item.priceDiscount}</p>
@@ -69,6 +79,7 @@ export const PurchasePanel = ({
           </p>
         </div>
       </div>
+
       <button
         className={`h-[46px] px-4 py-3 transition duration-300 ${
           isInCartState
@@ -79,9 +90,21 @@ export const PurchasePanel = ({
       >
         {isInCartState ? 'Added to cart' : 'Add to cart'}
       </button>
-      <button className="w-[150px] h-[46px] bg-colorBlack text-white">
+
+      <button
+        className="w-[150px] h-[46px] bg-black text-white"
+        onClick={handleCompareClick}
+      >
         Compare
       </button>
+
+      {/* Render the modal directly below the button */}
+      <CompareModal
+        isOpen={isCompareModalOpen}
+        closeModal={() => setCompareModalOpen(false)}
+      />
+
+      {/* Product Specifications */}
       <div className="flex flex-col space-y-2 mt-4">
         {item.screen && (
           <div className="flex justify-between">
