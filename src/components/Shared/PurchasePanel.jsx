@@ -79,6 +79,9 @@ export const PurchasePanel = ({
       >
         {isInCartState ? 'Added to cart' : 'Add to cart'}
       </button>
+      <button className="w-[150px] h-[46px] bg-colorBlack text-white">
+        Compare
+      </button>
       <div className="flex flex-col space-y-2 mt-4">
         {item.screen && (
           <div className="flex justify-between">
