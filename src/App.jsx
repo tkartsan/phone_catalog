@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Accessories } from './components/Accessories';
 import { AccessoryDetails } from './components/AccessoryDetails';
 import { CartPage } from './components/Cart/CartPage';
+import { ComparisonPage } from './components/ComparisonPage';
 import { FavoritePhones } from './components/FavoritePhones';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -79,6 +80,7 @@ function App() {
           />
           <Route path="/favorites" element={<FavoritePhones />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/comparison" element={<ComparisonPage />} />
         </Routes>
       </main>
       <Footer />
