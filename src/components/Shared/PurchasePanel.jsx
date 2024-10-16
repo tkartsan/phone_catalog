@@ -98,13 +98,11 @@ export const PurchasePanel = ({
         Compare
       </button>
 
-      {/* Render the modal directly below the button */}
       <CompareModal
         isOpen={isCompareModalOpen}
         closeModal={() => setCompareModalOpen(false)}
       />
 
-      {/* Product Specifications */}
       <div className="flex flex-col space-y-2 mt-4">
         {item.screen && (
           <div className="flex justify-between">
