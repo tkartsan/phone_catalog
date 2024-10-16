@@ -1,11 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 import { useCompareStore } from '../../store';
 
 export const CompareModal = ({ isOpen, closeModal }) => {
   const { comparedDevices, removeDeviceFromCompare } = useCompareStore();
-  const navigate = useNavigate(); // Initialize useNavigate for routing
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -14,7 +14,6 @@ export const CompareModal = ({ isOpen, closeModal }) => {
   };
 
   const handleCompareNowClick = () => {
-    // Redirect to the /comparison route
     if (comparedDevices.length === 2) {
       navigate('/comparison');
     }
@@ -64,7 +63,7 @@ export const CompareModal = ({ isOpen, closeModal }) => {
           <button
             className="bg-gray-300 p-2"
             disabled={comparedDevices.length < 2}
-            onClick={handleCompareNowClick} // Redirect when button is clicked
+            onClick={handleCompareNowClick}
           >
             Compare Now
           </button>

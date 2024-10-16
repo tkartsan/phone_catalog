@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { devicesColorNamesMap } from '../../global/constants';
 import { useCartStore, useCompareStore } from '../../store';
-import { CompareModal } from '../CompareModal'; // Import the modal component
+import { CompareModal } from '../CompareModal';
 
 export const PurchasePanel = ({
   item,
@@ -15,7 +15,7 @@ export const PurchasePanel = ({
   const { addToCart, removeFromCart, isInCart } = useCartStore();
   const { addDeviceToCompare } = useCompareStore();
   const isInCartState = isInCart(item.id);
-  const [isCompareModalOpen, setCompareModalOpen] = useState(false); // Modal state
+  const [isCompareModalOpen, setCompareModalOpen] = useState(false);
 
   const handleCartAction = () => {
     if (isInCartState) {
@@ -26,8 +26,8 @@ export const PurchasePanel = ({
   };
 
   const handleCompareClick = () => {
-    addDeviceToCompare(item);
-    setCompareModalOpen(true); // Open the modal
+    addDeviceToCompare(item, itemType);
+    setCompareModalOpen(true);
   };
 
   return (
