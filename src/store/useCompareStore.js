@@ -9,20 +9,32 @@ export const useCompareStore = create(
 
       addDeviceToCompare: (device, deviceType) =>
         set((state) => {
-          if (state.deviceType === null || state.deviceType === deviceType) {
-            if (
-              state.comparedDevices.length < 2 &&
-              !state.comparedDevices.some((d) => d.id === device.id)
-            ) {
-              return {
-                comparedDevices: [...state.comparedDevices, device],
-                deviceType,
-              };
-            }
-          } else {
+          // If the device is already in comparison, do nothing
+          if (state.comparedDevices.some((d) => d.id === device.id)) {
+            return state;
+          }
+
+          // If comparing two devices and adding a different type, reset the comparison
+          if (state.deviceType !== null && state.deviceType !== deviceType) {
             return {
-              comparedDevices: [device],
+              comparedDevices: [device], // Replace with new device
+              deviceType, // Set the new type
+            };
+          }
+
+          // If the device type matches, proceed with adding to comparison
+          if (state.deviceType === null || state.deviceType === deviceType) {
+            return {
+              comparedDevices: [...state.comparedDevices, device],
               deviceType,
+            };
+          }
+
+          // Handle case where 2 devices are already in comparison
+          if (state.comparedDevices.length >= 2) {
+            return {
+              comparedDevices: [device], // Replace with new device
+              deviceType, // Reset with the new device type
             };
           }
         }),

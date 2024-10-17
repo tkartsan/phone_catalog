@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { devicesColorNamesMap } from '../../global/constants';
 import { useCartStore, useCompareStore } from '../../store';
@@ -13,9 +13,15 @@ export const PurchasePanel = ({
   handleCapacityChange,
 }) => {
   const { addToCart, removeFromCart, isInCart } = useCartStore();
-  const { addDeviceToCompare } = useCompareStore();
+  const { addDeviceToCompare, comparedDevices } = useCompareStore();
   const isInCartState = isInCart(item.id);
   const [isCompareModalOpen, setCompareModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (comparedDevices.length > 0) {
+      setCompareModalOpen(true);
+    }
+  }, [comparedDevices]);
 
   const handleCartAction = () => {
     if (isInCartState) {
@@ -27,7 +33,6 @@ export const PurchasePanel = ({
 
   const handleCompareClick = () => {
     addDeviceToCompare(item, itemType);
-    setCompareModalOpen(true);
   };
 
   return (
@@ -98,10 +103,9 @@ export const PurchasePanel = ({
         Compare
       </button>
 
-      <CompareModal
-        isOpen={isCompareModalOpen}
-        closeModal={() => setCompareModalOpen(false)}
-      />
+      {isCompareModalOpen && (
+        <CompareModal closeModal={() => setCompareModalOpen(false)} />
+      )}
 
       <div className="flex flex-col space-y-2 mt-4">
         {item.screen && (

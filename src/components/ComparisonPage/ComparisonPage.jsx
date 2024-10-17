@@ -15,16 +15,15 @@ export const ComparisonPage = () => {
     { label: 'Resolution', key: 'resolution' },
     { label: 'RAM', key: 'ram' },
     { label: 'Cell', key: 'cell' },
-    { label: 'Price', key: 'priceDiscount' }, // Adding $ sign later
+    { label: 'Price', key: 'priceDiscount' },
   ];
 
   return (
     <div className="w-full max-w-5xl mx-auto p-4 border-solid border-1 border-grey">
       <h1 className="text-2xl font-bold mb-6">Device Comparison</h1>
 
-      {/* Device images and names */}
       <div className="grid grid-cols-3 gap-4 border-b border-gray-300">
-        <div className="col-span-1"></div> {/* Empty for labels */}
+        <div className="col-span-1"></div>
         {comparedDevices.map((device, index) => (
           <div
             key={index}
@@ -39,12 +38,9 @@ export const ComparisonPage = () => {
           </div>
         ))}
       </div>
-
-      {/* Specifications */}
       <div className="grid grid-cols-3 gap-4 mt-4 border-t border-gray-300">
         {specs.map((spec, index) => (
           <React.Fragment key={spec.key}>
-            {/* Specification Label */}
             <div
               className={`p-4 font-semibold border-t border-gray-300 border-r ${
                 index % 2 === 0 ? 'bg-gray-100' : ''
@@ -53,7 +49,6 @@ export const ComparisonPage = () => {
               {spec.label}
             </div>
 
-            {/* Specification Values for each device */}
             {comparedDevices.map((device, i) => (
               <div
                 key={i}
@@ -61,7 +56,6 @@ export const ComparisonPage = () => {
                   index % 2 === 0 ? 'bg-gray-100' : ''
                 }`}
               >
-                {/* If price, add the $ sign after */}
                 {spec.key === 'priceDiscount' ? (
                   device[spec.key] ? (
                     `$${device[spec.key]}`
