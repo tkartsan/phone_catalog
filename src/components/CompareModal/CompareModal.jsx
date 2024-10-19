@@ -18,12 +18,12 @@ export const CompareModal = ({ closeModal }) => {
   };
 
   return ReactDOM.createPortal(
-    <CSSTransition in={true} timeout={3000} classNames="slide" appear>
+    <CSSTransition in={true} timeout={1000} classNames="slide" unmountOnExit>
       <div
         className="fixed right-0 top-0 w-[250px] h-[600px] z-50"
-        style={{ transition: 'transform 1s', transform: 'translateY(0)' }}
+        style={{ transform: 'translateY(0)' }}
       >
-        <div className="bg-white p-4 h-full shadow-lg rounded-md border border-solid border-black">
+        <div className="bg-white p-4 h-full shadow-lg rounded-md border border-solid border-colorBorderGrey">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Compare Devices</h2>
             <button onClick={closeModal} className="text-xl font-bold">

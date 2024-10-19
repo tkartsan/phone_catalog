@@ -9,7 +9,9 @@ export const useCompareStore = create(
 
       addDeviceToCompare: (device, deviceType) =>
         set((state) => {
-          if (state.comparedDevices.some((d) => d.id === device.id)) {
+          if (state.comparedDevices.length >= 2) {
+            console.error('You cannot compare more than two devices');
+
             return state;
           }
 
@@ -21,18 +23,15 @@ export const useCompareStore = create(
           }
 
           if (state.deviceType === null || state.deviceType === deviceType) {
-            return {
-              comparedDevices: [...state.comparedDevices, device],
-              deviceType,
-            };
+            if (!state.comparedDevices.some((d) => d.id === device.id)) {
+              return {
+                comparedDevices: [...state.comparedDevices, device],
+                deviceType,
+              };
+            }
           }
 
-          if (state.comparedDevices.length >= 2) {
-            return {
-              comparedDevices: [device],
-              deviceType,
-            };
-          }
+          return state;
         }),
 
       removeDeviceFromCompare: (deviceId) =>
