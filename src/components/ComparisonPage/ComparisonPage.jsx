@@ -81,7 +81,7 @@ export const ComparisonPage = () => {
               <div
                 className={`p-4 font-semibold border-t border-gray-300 border-r ${
                   index % 2 === 0 ? 'bg-gray-100' : ''
-                } ${spec.key === 'cell' ? 'flex items-center' : ''}`} // Added for vertical centering of "Cell"
+                } ${spec.key === 'cell' ? 'flex items-center' : ''}`}
               >
                 {spec.label}
               </div>
@@ -93,21 +93,9 @@ export const ComparisonPage = () => {
                     index % 2 === 0 ? 'bg-gray-100' : ''
                   }`}
                 >
-                  {spec.key === 'priceDiscount' ? (
-                    device[spec.key] ? (
-                      `$${device[spec.key]}`
-                    ) : (
-                      <span className="text-gray-500">No specification</span>
-                    )
-                  ) : device[spec.key] ? (
-                    Array.isArray(device[spec.key]) ? (
-                      device[spec.key].join(', ')
-                    ) : (
-                      device[spec.key]
-                    )
-                  ) : (
-                    <span className="text-gray-500">No specification</span>
-                  )}
+                  {Array.isArray(device[spec.key])
+                    ? device[spec.key].join(', ')
+                    : device[spec.key]}
                 </div>
               ))}
             </React.Fragment>
