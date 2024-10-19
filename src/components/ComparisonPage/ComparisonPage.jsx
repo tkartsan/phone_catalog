@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useCompareStore } from '../../store';
 
 export const ComparisonPage = () => {
   const { comparedDevices } = useCompareStore();
+  const [hideIdenticalLines, setHideIdenticalLines] = useState(false); // New state to track checkbox status
 
   if (comparedDevices.length === 0) {
     return <p>No devices to compare.</p>;
@@ -18,9 +19,37 @@ export const ComparisonPage = () => {
     { label: 'Price', key: 'priceDiscount' },
   ];
 
+  const areValuesIdentical = (key) => {
+    const firstValue = comparedDevices[0][key];
+
+    return comparedDevices.every((device) => {
+      if (Array.isArray(firstValue)) {
+        // Compare arrays (like 'Cell' spec) deeply
+        return (
+          Array.isArray(device[key]) &&
+          firstValue.length === device[key].length &&
+          firstValue.every((val, index) => val === device[key][index])
+        );
+      }
+
+      return device[key] === firstValue;
+    });
+  };
+
   return (
-    <div className="w-full max-w-5xl mx-auto p-4 border-solid border-1 border-grey">
+    <div className="w-full max-w-5xl mx-auto p-4 border-solid border-1 border-colorBorderGrey">
       <h1 className="text-2xl font-bold mb-6">Device Comparison</h1>
+
+      <div className="mb-4">
+        <label>
+          <input
+            type="checkbox"
+            checked={hideIdenticalLines}
+            onChange={() => setHideIdenticalLines(!hideIdenticalLines)}
+          />
+          <span className="ml-2">Hide same parameters</span>
+        </label>
+      </div>
 
       <div className="grid grid-cols-3 gap-4 border-b border-gray-300">
         <div className="col-span-1"></div>
@@ -38,43 +67,52 @@ export const ComparisonPage = () => {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-4 border-t border-gray-300">
-        {specs.map((spec, index) => (
-          <React.Fragment key={spec.key}>
-            <div
-              className={`p-4 font-semibold border-t border-gray-300 border-r ${
-                index % 2 === 0 ? 'bg-gray-100' : ''
-              }`}
-            >
-              {spec.label}
-            </div>
 
-            {comparedDevices.map((device, i) => (
+      <div className="h-[1px] w-full bg-colorBorderGrey mb-2"></div>
+
+      <div className="grid grid-cols-3 gap-x-4 gap-y-0 mt-4 border-t border-gray-300">
+        {specs.map((spec, index) => {
+          if (hideIdenticalLines && areValuesIdentical(spec.key)) {
+            return null;
+          }
+
+          return (
+            <React.Fragment key={spec.key}>
               <div
-                key={i}
-                className={`p-4 text-center border-l border-t border-gray-300 ${
+                className={`p-4 font-semibold border-t border-gray-300 border-r ${
                   index % 2 === 0 ? 'bg-gray-100' : ''
-                }`}
+                } ${spec.key === 'cell' ? 'flex items-center' : ''}`} // Added for vertical centering of "Cell"
               >
-                {spec.key === 'priceDiscount' ? (
-                  device[spec.key] ? (
-                    `$${device[spec.key]}`
+                {spec.label}
+              </div>
+
+              {comparedDevices.map((device, i) => (
+                <div
+                  key={i}
+                  className={`p-4 text-center border-l border-t border-gray-300 ${
+                    index % 2 === 0 ? 'bg-gray-100' : ''
+                  }`}
+                >
+                  {spec.key === 'priceDiscount' ? (
+                    device[spec.key] ? (
+                      `$${device[spec.key]}`
+                    ) : (
+                      <span className="text-gray-500">No specification</span>
+                    )
+                  ) : device[spec.key] ? (
+                    Array.isArray(device[spec.key]) ? (
+                      device[spec.key].join(', ')
+                    ) : (
+                      device[spec.key]
+                    )
                   ) : (
                     <span className="text-gray-500">No specification</span>
-                  )
-                ) : device[spec.key] ? (
-                  Array.isArray(device[spec.key]) ? (
-                    device[spec.key].join(', ')
-                  ) : (
-                    device[spec.key]
-                  )
-                ) : (
-                  <span className="text-gray-500">No specification</span>
-                )}
-              </div>
-            ))}
-          </React.Fragment>
-        ))}
+                  )}
+                </div>
+              ))}
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
