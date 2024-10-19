@@ -12,6 +12,5 @@ export const devicesColorNamesMap = {
   purple: '#A020F0',
   sierrablue: '#4545d1',
   spacegray: '#4B4B4B',
-  // 'space gray': '#4A4A4A',
   coral: '#FF6F61',
 };

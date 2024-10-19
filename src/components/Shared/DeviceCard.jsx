@@ -6,10 +6,7 @@ import { useCartStore } from '../../store/useCartStore';
 import { useFavoritesStore } from '../../store/useFavoritesStore';
 
 export const DeviceCard = ({ item, itemType, isShowDiscount }) => {
-  // Extract cart-related actions and state
   const { addToCart, removeFromCart, isInCart } = useCartStore();
-
-  // Extract favorites-related actions and state
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
 
   const handleToggleFavorite = () => {

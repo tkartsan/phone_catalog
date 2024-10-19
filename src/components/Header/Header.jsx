@@ -4,8 +4,8 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { HeartIcon, HomeIcon, WebsiteLogo } from '../../assets';
-import { useCartStore } from '../../store/useCartStore'; // Cart store
-import { useFavoritesStore } from '../../store/useFavoritesStore'; // Favorites store
+import { useCartStore } from '../../store/useCartStore';
+import { useFavoritesStore } from '../../store/useFavoritesStore';
 
 export const Header = () => {
   const navLinks = [
@@ -16,7 +16,7 @@ export const Header = () => {
   ];
 
   const { totalItemsInCart } = useCartStore();
-  const { favorites } = useFavoritesStore(); // Accessing the correct store for favorites
+  const { favorites } = useFavoritesStore();
 
   const favoriteCount = favorites.length;
   const cartCount = totalItemsInCart();

@@ -4,7 +4,7 @@ import { useCompareStore } from '../../store';
 
 export const ComparisonPage = () => {
   const { comparedDevices } = useCompareStore();
-  const [hideIdenticalLines, setHideIdenticalLines] = useState(false); // New state to track checkbox status
+  const [hideIdenticalLines, setHideIdenticalLines] = useState(false);
 
   if (comparedDevices.length === 0) {
     return <p>No devices to compare.</p>;
@@ -24,7 +24,6 @@ export const ComparisonPage = () => {
 
     return comparedDevices.every((device) => {
       if (Array.isArray(firstValue)) {
-        // Compare arrays (like 'Cell' spec) deeply
         return (
           Array.isArray(device[key]) &&
           firstValue.length === device[key].length &&
