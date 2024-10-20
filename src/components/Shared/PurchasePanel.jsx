@@ -35,6 +35,8 @@ export const PurchasePanel = ({
     addDeviceToCompare(item, itemType);
   };
 
+  const isCompareDisabled = comparedDevices.length >= 2;
+
   return (
     <div className="flex flex-col w-[400px] space-y-4 relative">
       <p className="text-right text-sm text-gray-500">ID: {item.numericId}</p>
@@ -97,8 +99,11 @@ export const PurchasePanel = ({
       </button>
 
       <button
-        className="w-[150px] h-[46px] bg-black text-white"
+        className={`w-[150px] h-[46px] text-white transition duration-300 ${
+          isCompareDisabled ? 'bg-colorBorderGrey' : 'bg-black'
+        }`}
         onClick={handleCompareClick}
+        disabled={isCompareDisabled} // Disable the button when 2 devices are already added
       >
         Compare
       </button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -8,8 +8,7 @@ import { useCompareStore } from '../../store';
 export const CompareModal = ({ closeModal }) => {
   const { comparedDevices, removeDeviceFromCompare } = useCompareStore();
   const navigate = useNavigate();
-
-  if (!comparedDevices.length) return null;
+  const slideRef = useRef(null);
 
   const handleCompareNowClick = () => {
     if (comparedDevices.length === 2) {
@@ -18,49 +17,67 @@ export const CompareModal = ({ closeModal }) => {
   };
 
   return ReactDOM.createPortal(
-    <CSSTransition in={true} timeout={1000} classNames="slide" unmountOnExit>
+    <CSSTransition
+      in={!!comparedDevices.length}
+      timeout={3000}
+      classNames="slide"
+      nodeRef={slideRef}
+      unmountOnExit
+    >
       <div
-        className="fixed right-0 top-0 w-[250px] h-[600px] z-50"
-        style={{ transform: 'translateY(0)' }}
+        ref={slideRef}
+        className="fixed bottom-0 right-0 w-full max-w-[400px] z-50 p-4 bg-white shadow-lg rounded-md border border-solid border-gray-300"
       >
-        <div className="bg-white p-4 h-full shadow-lg rounded-md border border-solid border-colorBorderGrey">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold">Compare Devices</h2>
-            <button onClick={closeModal} className="text-xl font-bold">
-              ✕
-            </button>
-          </div>
-          <div className="flex flex-col gap-4">
-            {comparedDevices.map((device) => (
-              <div key={device.id} className="border p-2 rounded-md">
-                {device.images && device.images[0] ? (
-                  <img
-                    src={`/${device.images[0]}`}
-                    alt={device.name}
-                    className="w-full h-[100px] object-contain mb-2"
-                  />
-                ) : (
-                  <div>No image available</div>
-                )}
-                <div className="text-center font-semibold">{device.name}</div>
-                <button
-                  className="bg-red-500 text-white mt-2 p-1 rounded"
-                  onClick={() => removeDeviceFromCompare(device.id)}
-                >
-                  Remove
-                </button>
+        <button
+          onClick={closeModal}
+          className="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-900"
+        >
+          ✕
+        </button>
+
+        <div className="flex gap-4 items-start justify-start px-4 mb-2">
+          {comparedDevices.map((device) => (
+            <div
+              key={device.id}
+              className="relative flex flex-col items-center w-[120px] p-2 rounded-md border border-gray-200 hover:bg-gray-100 transition-colors"
+            >
+              {device.images && device.images[0] ? (
+                <img
+                  src={`/${device.images[0]}`}
+                  alt={device.name}
+                  className="w-[80px] h-[100px] object-contain mb-2"
+                />
+              ) : (
+                <div className="w-[80px] h-[100px] bg-gray-200 flex items-center justify-center mb-2">
+                  No image available
+                </div>
+              )}
+
+              <div className="text-center text-sm font-semibold min-h-[40px] flex items-center justify-center">
+                {device.name}
               </div>
-            ))}
+
+              <button
+                className="absolute top-0 right-0 bg-white rounded-full p-1 text-gray-600 hover:text-gray-900"
+                onClick={() => removeDeviceFromCompare(device.id)}
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-end">
+          <div className="h-12">
+            {comparedDevices.length === 2 && (
+              <button
+                className="flex items-center bg-blue-500 text-white px-4 py-2 rounded-md transition hover:bg-blue-600"
+                onClick={handleCompareNowClick}
+              >
+                <span>Compare</span>
+              </button>
+            )}
           </div>
-          <button
-            className={`mt-4 p-2 w-full rounded ${
-              comparedDevices.length < 2 ? 'bg-gray-500' : 'bg-blue-500'
-            } text-white`}
-            onClick={handleCompareNowClick}
-            disabled={comparedDevices.length < 2}
-          >
-            Compare Now
-          </button>
         </div>
       </div>
     </CSSTransition>,
