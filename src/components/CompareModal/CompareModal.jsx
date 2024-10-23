@@ -10,6 +10,8 @@ export const CompareModal = ({ closeModal }) => {
   const navigate = useNavigate();
   const slideRef = useRef(null);
 
+  const isModalVisible = comparedDevices.length > 0;
+
   const handleCompareNowClick = () => {
     if (comparedDevices.length === 2) {
       navigate('/comparison');
@@ -18,8 +20,8 @@ export const CompareModal = ({ closeModal }) => {
 
   return ReactDOM.createPortal(
     <CSSTransition
-      in={!!comparedDevices.length}
-      timeout={3000}
+      in={isModalVisible}
+      timeout={500}
       classNames="slide"
       nodeRef={slideRef}
       unmountOnExit
