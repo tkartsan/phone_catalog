@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { Breadcrumb } from '../Breadcrumb';
 import { CustomDropdown } from '../CustomDropdown';
-import { Pagination } from '../Pagination'; // Import your Pagination component
+import { Pagination } from '../Pagination';
 import { DeviceCard } from '../Shared/DeviceCard';
 
 export const Accessories = ({ accessories }) => {

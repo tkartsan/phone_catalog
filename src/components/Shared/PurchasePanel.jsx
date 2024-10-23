@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { devicesColorNamesMap } from '../../global/constants';
-import { useCartStore } from '../../store';
+import { useCartStore, useCompareStore } from '../../store';
+import { CompareModal } from '../CompareModal';
 
 export const PurchasePanel = ({
   item,
@@ -12,7 +13,15 @@ export const PurchasePanel = ({
   handleCapacityChange,
 }) => {
   const { addToCart, removeFromCart, isInCart } = useCartStore();
+  const { addDeviceToCompare, comparedDevices } = useCompareStore();
   const isInCartState = isInCart(item.id);
+  const [isCompareModalOpen, setCompareModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (comparedDevices.length > 0) {
+      setCompareModalOpen(true);
+    }
+  }, [comparedDevices]);
 
   const handleCartAction = () => {
     if (isInCartState) {
@@ -22,8 +31,14 @@ export const PurchasePanel = ({
     }
   };
 
+  const handleCompareClick = () => {
+    addDeviceToCompare(item, itemType);
+  };
+
+  const isCompareDisabled = comparedDevices.length >= 2;
+
   return (
-    <div className="flex flex-col w-[400px] space-y-4">
+    <div className="flex flex-col w-[400px] space-y-4 relative">
       <p className="text-right text-sm text-gray-500">ID: {item.numericId}</p>
 
       <div className="space-y-2">
@@ -43,6 +58,7 @@ export const PurchasePanel = ({
           ))}
         </div>
       </div>
+
       <div className="space-y-2">
         <p className="text-lg">Select capacity</p>
         <div className="flex space-x-4">
@@ -61,6 +77,7 @@ export const PurchasePanel = ({
           ))}
         </div>
       </div>
+
       <div className="flex flex-col space-y-2">
         <div className="flex items-center gap-4">
           <p className="text-3xl font-bold">${item.priceDiscount}</p>
@@ -69,6 +86,7 @@ export const PurchasePanel = ({
           </p>
         </div>
       </div>
+
       <button
         className={`h-[46px] px-4 py-3 transition duration-300 ${
           isInCartState
@@ -79,6 +97,21 @@ export const PurchasePanel = ({
       >
         {isInCartState ? 'Added to cart' : 'Add to cart'}
       </button>
+
+      <button
+        className={`w-[150px] h-[46px] text-white transition duration-300 ${
+          isCompareDisabled ? 'bg-colorBorderGrey' : 'bg-black'
+        }`}
+        onClick={handleCompareClick}
+        disabled={isCompareDisabled} // Disable the button when 2 devices are already added
+      >
+        Compare
+      </button>
+
+      {isCompareModalOpen && (
+        <CompareModal closeModal={() => setCompareModalOpen(false)} />
+      )}
+
       <div className="flex flex-col space-y-2 mt-4">
         {item.screen && (
           <div className="flex justify-between">

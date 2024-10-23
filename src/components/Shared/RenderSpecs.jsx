@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const RenderSpecs = ({ item, itemType }) => {
-  // Define the spec fields based on the item type
   const specs = {
     phone: [
       { label: 'Screen', value: item.screen },
