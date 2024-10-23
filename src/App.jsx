@@ -14,14 +14,14 @@ import { PhoneDetails } from './components/PhoneDetails';
 import { ScrollToTop } from './components/ScrollToTop';
 import { TabletDetails } from './components/TabletDetails';
 import { Tablets } from './components/Tablets';
-import { useFetch } from './hooks/useFetch';
+import { useDataFetch } from './hooks/useDataFetch';
 import { getItemsWithNumericId } from './utils/getItemsWithNumericId';
+import { useProductsDataStore } from './store';
 
 function App() {
-  const { data: phonesData } = useFetch('/api/phones.json');
-  const { data: tabletsData } = useFetch('/api/tablets.json');
-  const { data: accessoriesData } = useFetch('/api/accessories.json');
-  const { data: productsData } = useFetch('/api/products.json');
+  useDataFetch();
+  const { phonesData, tabletsData, accessoriesData, productsData } =
+    useProductsDataStore();
 
   return (
     <div className="flex flex-col min-h-screen">
